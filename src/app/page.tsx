@@ -52,32 +52,43 @@ export default function MaharaniLandingPage() {
   const [activeTab, setActiveTab] = useState<"rehydrate" | "milk">("rehydrate");
   const warmWaterMl = activeTab === "rehydrate" ? coconutGrams * 0.5 : coconutGrams * 1.5;
 
-  // --- Scroll Video Logic ---
+  // --- Canvas Scroll Sequence Logic ---
   const heroContainerRef = useRef<HTMLDivElement>(null);
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const frameCount = 120;
 
   useEffect(() => {
     // Respect prefers-reduced-motion
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) return;
 
-    const isMobile = window.innerWidth < 768;
-    const video = heroVideoRef.current;
-
-    if (isMobile) {
-      if (video) {
-        video.loop = true;
-        video.play().catch(() => {});
+    // We enable canvas on all devices since image sequence is performant!
+    
+    // 1. Preload Images
+    const preloadImages = () => {
+      for (let i = 0; i < frameCount; i++) {
+        const img = new window.Image();
+        img.src = `/hero-frames/${i.toString().padStart(4, '0')}.jpg`;
+        imagesRef.current[i] = img;
+        
+        // Draw first frame once loaded
+        if (i === 0) {
+          img.onload = () => {
+             renderFrame(0);
+          };
+        }
       }
-      return;
-    }
+    };
+
+    preloadImages();
 
     let animationFrameId: number;
     let targetProgress = 0;
     let currentProgress = 0;
 
     const handleScroll = () => {
-      if (!heroContainerRef.current || !video || !video.duration) return;
+      if (!heroContainerRef.current) return;
       
       const { top, height } = heroContainerRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
@@ -91,48 +102,85 @@ export default function MaharaniLandingPage() {
       targetProgress = progress;
     };
 
-    if (video) {
-      // Force decode for smoother scrubbing on iOS/Safari
-      video.play().then(() => {
-        video.pause();
-      }).catch(() => {});
+    const renderFrame = (index: number) => {
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext('2d');
+      const img = imagesRef.current[index];
       
-      video.addEventListener('loadedmetadata', handleScroll);
-    }
+      if (!canvas || !ctx || !img) return;
 
-    // Call once to initialize
-    handleScroll();
+      const dpr = window.devicePixelRatio || 1;
+      const cw = canvas.clientWidth || window.innerWidth;
+      const ch = canvas.clientHeight || window.innerHeight;
+      
+      canvas.width = cw * dpr;
+      canvas.height = ch * dpr;
+      ctx.scale(dpr, dpr);
+      
+      // Only draw if image is loaded
+      if (!img.complete || img.naturalWidth === 0) return;
 
-    const lerp = (start: number, end: number, factor: number) => {
-      return start + (end - start) * factor;
+      const imgRatio = img.naturalWidth / img.naturalHeight;
+      const canvasRatio = cw / ch;
+      
+      let drawWidth = cw;
+      let drawHeight = ch;
+      let offsetX = 0;
+      let offsetY = 0;
+      
+      if (imgRatio > canvasRatio) {
+        drawWidth = ch * imgRatio;
+        offsetX = (cw - drawWidth) / 2;
+      } else {
+        drawHeight = cw / imgRatio;
+        offsetY = (ch - drawHeight) / 2;
+      }
+      
+      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
     };
 
-    const updateVideo = () => {
-      if (video && video.duration) {
-        currentProgress = lerp(currentProgress, targetProgress, 0.15);
-        const newTime = currentProgress * video.duration;
+    let lastDrawnFrame = -1;
+
+    const updateCanvas = () => {
+      if (imagesRef.current.length > 0) {
+        // Decrease lerp factor from 0.15 to 0.08 for a smoother, buttery float effect
+        currentProgress = currentProgress + (targetProgress - currentProgress) * 0.08;
+        const frameIndex = Math.min(
+          frameCount - 1,
+          Math.max(0, Math.floor(currentProgress * frameCount))
+        );
         
-        if (Math.abs(video.currentTime - newTime) > 0.005) {
-          video.currentTime = newTime;
+        // Performance optimization: Only draw if the frame actually changed
+        if (frameIndex !== lastDrawnFrame) {
+          renderFrame(frameIndex);
+          lastDrawnFrame = frameIndex;
         }
       }
-      animationFrameId = requestAnimationFrame(updateVideo);
+      animationFrameId = requestAnimationFrame(updateCanvas);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    animationFrameId = requestAnimationFrame(updateVideo);
+    window.addEventListener("resize", () => {
+        handleScroll();
+        const frameIndex = Math.min(
+          frameCount - 1,
+          Math.max(0, Math.floor(currentProgress * frameCount))
+        );
+        renderFrame(frameIndex);
+    });
+    
+    // Call once to initialize
+    handleScroll();
+    animationFrameId = requestAnimationFrame(updateCanvas);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (video) {
-        video.removeEventListener('loadedmetadata', handleScroll);
-      }
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#FFFDF9] text-slate-800 font-sans selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen bg-[#FFFDF9] text-slate-800 font-sans selection:bg-red-600 selection:text-white">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-red-100 shadow-sm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center relative">
@@ -158,16 +206,12 @@ export default function MaharaniLandingPage() {
       {/* Hero Section */}
       <section id="home" className="relative">
         {/* Scroll Container for Video */}
-        <div ref={heroContainerRef} className="relative h-[100svh] md:h-[350vh]">
-          <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
-            {/* Scroll Video */}
-            <video 
-              ref={heroVideoRef}
-              src="/hero-scroll-video.mp4"
-              muted
-              playsInline
-              preload="metadata"
-              className="absolute top-0 left-0 w-full h-full object-cover -z-30"
+        <div ref={heroContainerRef} className="relative h-[350vh]">
+          <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-black">
+            {/* Scroll Canvas Sequence */}
+            <canvas 
+              ref={canvasRef}
+              className="absolute top-0 left-0 w-full h-full -z-30"
             />
           </div>
         </div>
