@@ -52,6 +52,10 @@ export default function MaharaniLandingPage() {
   const [activeTab, setActiveTab] = useState<"rehydrate" | "milk">("rehydrate");
   const warmWaterMl = activeTab === "rehydrate" ? coconutGrams * 0.5 : coconutGrams * 1.5;
 
+  // --- Preloader State ---
+  const [isPreloading, setIsPreloading] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
+
   // --- Canvas Scroll Sequence Logic ---
   const heroContainerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -67,17 +71,25 @@ export default function MaharaniLandingPage() {
     
     // 1. Preload Images
     const preloadImages = () => {
+      let loadedCount = 0;
       for (let i = 0; i < frameCount; i++) {
         const img = new window.Image();
         img.src = `/hero-frames/${i.toString().padStart(4, '0')}.jpg`;
         imagesRef.current[i] = img;
         
-        // Draw first frame once loaded
-        if (i === 0) {
-          img.onload = () => {
+        const handleLoad = () => {
+          loadedCount++;
+          setLoadProgress(Math.floor((loadedCount / frameCount) * 100));
+          if (loadedCount >= frameCount) {
+             setTimeout(() => setIsPreloading(false), 800); // 800ms delay to show 100% and then fade
+          }
+          if (i === 0) {
              renderFrame(0);
-          };
-        }
+          }
+        };
+
+        img.onload = handleLoad;
+        img.onerror = handleLoad; // Skip broken images so we don't get stuck forever
       }
     };
 
@@ -181,6 +193,36 @@ export default function MaharaniLandingPage() {
 
   return (
     <div className="min-h-screen bg-[#FFFDF9] text-slate-800 font-sans selection:bg-red-600 selection:text-white">
+      <AnimatePresence>
+        {isPreloading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="fixed inset-0 z-[9999] bg-[#FFFDF9] flex flex-col items-center justify-center"
+          >
+            <motion.div
+              animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="mb-8"
+            >
+              <Image src="/logo-shield-v2.png" alt="Maharani Logo" width={120} height={150} className="object-contain" priority />
+            </motion.div>
+            <div className="w-64 h-1 bg-gray-200 rounded-full overflow-hidden mb-4 shadow-inner">
+              <motion.div 
+                className="h-full bg-red-600 rounded-full shadow-md"
+                initial={{ width: 0 }}
+                animate={{ width: `${loadProgress}%` }}
+                transition={{ duration: 0.1 }}
+              />
+            </div>
+            <p className="text-sm font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-red-500" /> Preparing Freshness... {loadProgress}%
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-red-100 shadow-sm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center relative">
