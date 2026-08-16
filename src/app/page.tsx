@@ -69,19 +69,24 @@ export default function MaharaniLandingPage() {
 
     // We enable canvas on all devices since image sequence is performant!
     
-    // 1. Preload Images
+    // 1. Preload Images optimized for mobile/iPhone
     const preloadImages = () => {
       let loadedCount = 0;
-      for (let i = 0; i < frameCount; i++) {
+      const initialFramesRequired = 20; // Unblock UI after 20 frames
+      
+      const loadFrame = (i: number) => {
         const img = new window.Image();
         img.src = `/hero-frames/${i.toString().padStart(4, '0')}.jpg`;
         imagesRef.current[i] = img;
         
         const handleLoad = () => {
           loadedCount++;
-          setLoadProgress(Math.floor((loadedCount / frameCount) * 100));
-          if (loadedCount >= frameCount) {
-             setTimeout(() => setIsPreloading(false), 800); // 800ms delay to show 100% and then fade
+          // Only track progress up to the required initial frames to unblock faster
+          if (loadedCount <= initialFramesRequired) {
+            setLoadProgress(Math.floor((loadedCount / initialFramesRequired) * 100));
+          }
+          if (loadedCount === initialFramesRequired) {
+             setTimeout(() => setIsPreloading(false), 500); 
           }
           if (i === 0) {
              renderFrame(0);
@@ -89,8 +94,21 @@ export default function MaharaniLandingPage() {
         };
 
         img.onload = handleLoad;
-        img.onerror = handleLoad; // Skip broken images so we don't get stuck forever
+        img.onerror = handleLoad; 
+      };
+
+      // Load initial burst of frames
+      for (let i = 0; i < Math.min(initialFramesRequired, frameCount); i++) {
+        loadFrame(i);
       }
+      
+      // Lazy load the remaining frames in the background to prevent network/memory choking on mobile
+      setTimeout(() => {
+        for (let i = initialFramesRequired; i < frameCount; i++) {
+          // Stagger the network requests to avoid connection limits
+          setTimeout(() => loadFrame(i), (i - initialFramesRequired) * 15);
+        }
+      }, 200);
     };
 
     preloadImages();
@@ -117,9 +135,19 @@ export default function MaharaniLandingPage() {
     const renderFrame = (index: number) => {
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext('2d');
-      const img = imagesRef.current[index];
       
-      if (!canvas || !ctx || !img) return;
+      // Find nearest loaded frame if target isn't loaded (prevents blank screen if scrolling fast)
+      let img = imagesRef.current[index];
+      if (!img || !img.complete) {
+         for (let i = index - 1; i >= 0; i--) {
+            if (imagesRef.current[i] && imagesRef.current[i].complete) {
+               img = imagesRef.current[i];
+               break;
+            }
+         }
+      }
+      
+      if (!canvas || !ctx || !img || !img.complete || img.naturalWidth === 0) return;
 
       const dpr = window.devicePixelRatio || 1;
       const cw = canvas.clientWidth || window.innerWidth;
@@ -129,9 +157,6 @@ export default function MaharaniLandingPage() {
       canvas.height = ch * dpr;
       ctx.scale(dpr, dpr);
       
-      // Only draw if image is loaded
-      if (!img.complete || img.naturalWidth === 0) return;
-
       const imgRatio = img.naturalWidth / img.naturalHeight;
       const canvasRatio = cw / ch;
       
