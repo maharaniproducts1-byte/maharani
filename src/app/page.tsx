@@ -61,11 +61,20 @@ export default function MaharaniLandingPage() {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mediaQuery.matches) return;
 
+    const isMobile = window.innerWidth < 768;
+    const video = heroVideoRef.current;
+
+    if (isMobile) {
+      if (video) {
+        video.loop = true;
+        video.play().catch(() => {});
+      }
+      return;
+    }
+
     let animationFrameId: number;
     let targetProgress = 0;
     let currentProgress = 0;
-
-    const video = heroVideoRef.current;
 
     const handleScroll = () => {
       if (!heroContainerRef.current || !video || !video.duration) return;
@@ -123,7 +132,7 @@ export default function MaharaniLandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#FFFDF9] text-slate-800 font-sans selection:bg-red-600 selection:text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#FFFDF9] text-slate-800 font-sans selection:bg-red-600 selection:text-white">
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-red-100 shadow-sm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center relative">
@@ -149,8 +158,8 @@ export default function MaharaniLandingPage() {
       {/* Hero Section */}
       <section id="home" className="relative">
         {/* Scroll Container for Video */}
-        <div ref={heroContainerRef} className="relative h-[350vh]">
-          <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div ref={heroContainerRef} className="relative h-[100svh] md:h-[350vh]">
+          <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
             {/* Scroll Video */}
             <video 
               ref={heroVideoRef}
@@ -164,7 +173,7 @@ export default function MaharaniLandingPage() {
         </div>
         
         {/* Components appearing AFTER the scroll animation finishes */}
-        <div className="relative z-10 pb-32 -mt-32">
+        <div className="relative z-10 pb-32 -mt-16 md:-mt-32">
           <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full bg-white/70 backdrop-blur-xl rounded-[3rem] p-12 border border-white/80 shadow-2xl shadow-red-900/5">
             <motion.div 
               initial="hidden"
