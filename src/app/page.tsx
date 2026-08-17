@@ -265,12 +265,12 @@ export default function MaharaniLandingPage() {
                 </motion.div>
               </motion.div>
 
-              <motion.h1 variants={fadeUp} className="text-5xl lg:text-7xl font-black text-gray-900 leading-[1.1] tracking-tighter drop-shadow-sm">
+              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-7xl font-black text-gray-900 leading-[1.1] tracking-tighter drop-shadow-sm">
                 Instant Freshness. <br />
                 <span className="text-red-600 bg-clip-text">Pure Kerala Coconut.</span>
               </motion.h1>
 
-              <motion.p variants={fadeUp} className="text-lg lg:text-xl text-gray-800 leading-relaxed max-w-2xl font-bold drop-shadow-sm">
+              <motion.p variants={fadeUp} className="text-base sm:text-lg lg:text-xl text-gray-800 leading-relaxed max-w-2xl font-bold drop-shadow-sm">
                 Crafted from select Kerala coconuts with natural coconut oils intact. 
                 Zero added preservatives, zero cholesterol, and 100% pure culinary convenience for modern kitchens.
               </motion.p>
