@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   keywords: "Kerala coconut, desiccated coconut powder, authentic coconut, Maharani coconut, zero cholesterol, dairy free",
 };
 
+import { Header } from "@/components/Header";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,8 +22,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} font-sans scroll-smooth`}>
-      <body className="min-h-screen bg-[#FFFDF9] text-slate-800 antialiased">
-        {children}
+      <body className="min-h-screen bg-[#FFFDF9] text-slate-800 antialiased flex flex-col">
+        <Header />
+        <main className="flex-grow">
+          {children}
+        </main>
       </body>
     </html>
   );
