@@ -1,0 +1,136 @@
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronLeft, Clock, Users, Flame, CheckCircle2 } from "lucide-react";
+import { recipesData } from "@/data/recipes";
+
+// Type for Next.js 15 route params (App Router)
+// Actually Next.js 13/14 uses `{ params: { slug: string } }`
+export function generateStaticParams() {
+  return recipesData.map((recipe) => ({
+    slug: recipe.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const recipe = recipesData.find((r) => r.slug === params.slug);
+  if (!recipe) return { title: "Recipe Not Found" };
+  
+  return {
+    title: `${recipe.title} | Maharani Recipes`,
+    description: recipe.description,
+  };
+}
+
+export default function RecipePage({ params }: { params: { slug: string } }) {
+  const recipe = recipesData.find((r) => r.slug === params.slug);
+
+  if (!recipe) {
+    notFound();
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FFFDF9] text-slate-800 pb-24">
+      {/* Header / Nav */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-red-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3 group cursor-pointer">
+            <Image src="/logo-shield-v2.png" alt="Maharani Official Logo" width={40} height={50} className="object-contain h-10 w-auto" />
+            <span className="font-black text-gray-900 hidden sm:block">Maharani Agro Products</span>
+          </Link>
+          <Link href="/#recipes" className="flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-red-600 transition-colors">
+            <ChevronLeft className="w-4 h-4" /> Back to Recipes
+          </Link>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <div className="bg-red-50/50 border-b border-red-100 pt-16 pb-20">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
+          <div className="inline-flex items-center gap-2 text-red-600 font-extrabold text-xs uppercase tracking-widest bg-white px-4 py-1.5 rounded-full shadow-sm border border-red-100">
+            Heritage Recipe
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight">{recipe.title}</h1>
+          <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">{recipe.description}</p>
+          
+          <div className="flex flex-wrap justify-center gap-6 md:gap-12 pt-6">
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-red-500 shadow-sm border border-gray-100"><Clock className="w-5 h-5" /></div>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Prep Time</span>
+              <span className="font-black text-gray-900">{recipe.prepTime}</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-red-500 shadow-sm border border-gray-100"><Flame className="w-5 h-5" /></div>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Cook Time</span>
+              <span className="font-black text-gray-900">{recipe.cookTime}</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-red-500 shadow-sm border border-gray-100"><Users className="w-5 h-5" /></div>
+              <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">Servings</span>
+              <span className="font-black text-gray-900">{recipe.servings}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        
+        {/* Ingredients Sidebar */}
+        <div className="lg:col-span-4 space-y-10">
+          <div className="bg-white p-8 rounded-[2rem] border border-gray-200 shadow-xl shadow-gray-200/50 sticky top-24">
+            <h3 className="text-2xl font-black text-gray-900 mb-6">Ingredients</h3>
+            <ul className="space-y-4">
+              {recipe.ingredients.map((ingredient, idx) => (
+                <li key={idx} className="flex gap-3 text-sm font-medium text-gray-700">
+                  <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0" />
+                  <span>{ingredient}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Preparation Steps */}
+        <div className="lg:col-span-8 space-y-12">
+          <div>
+            <h3 className="text-3xl font-black text-gray-900 mb-8">Preparation Steps</h3>
+            <div className="space-y-6">
+              {recipe.steps.map((step, idx) => (
+                <div key={idx} className="flex gap-6 group">
+                  <div className="flex flex-col items-center">
+                    <span className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-black shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                      {idx + 1}
+                    </span>
+                    {idx < recipe.steps.length - 1 && (
+                      <div className="w-px h-full bg-gray-200 my-2"></div>
+                    )}
+                  </div>
+                  <div className="pt-2 pb-8">
+                    <p className="text-gray-800 font-medium leading-relaxed">{step}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {(recipe.tips?.length > 0 || recipe.servingSuggestion) && (
+            <div className="bg-yellow-50 p-8 rounded-2xl border border-yellow-100">
+              <h4 className="text-xl font-black text-gray-900 mb-4">Chef&apos;s Notes</h4>
+              {recipe.tips?.map((tip, idx) => (
+                <p key={idx} className="text-sm font-medium text-gray-700 mb-2">
+                  <span className="font-bold">Tip:</span> {tip}
+                </p>
+              ))}
+              {recipe.servingSuggestion && (
+                <p className="text-sm font-medium text-gray-700 mt-4 pt-4 border-t border-yellow-200">
+                  <span className="font-bold">Serving Suggestion:</span> {recipe.servingSuggestion}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
