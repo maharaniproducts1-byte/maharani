@@ -12,8 +12,9 @@ export function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const recipe = recipesData.find((r) => r.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const recipe = recipesData.find((r) => r.slug === resolvedParams.slug);
   if (!recipe) return { title: "Recipe Not Found" };
   
   return {
@@ -22,8 +23,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default function RecipePage({ params }: { params: { slug: string } }) {
-  const recipe = recipesData.find((r) => r.slug === params.slug);
+export default async function RecipePage({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await params;
+  const recipe = recipesData.find((r) => r.slug === resolvedParams.slug);
 
   if (!recipe) {
     notFound();
