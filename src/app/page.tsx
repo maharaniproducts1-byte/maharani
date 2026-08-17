@@ -711,10 +711,7 @@ export default function MaharaniLandingPage() {
             {recipesData.map((recipe, idx) => (
               <motion.div key={idx} variants={fadeUp} className="bg-gray-50 flex flex-col rounded-[2rem] border border-gray-100 hover:bg-white hover:shadow-xl hover:shadow-red-900/5 hover:-translate-y-2 transition-all duration-300 overflow-hidden group">
                 <div className="aspect-[4/3] bg-gray-200 relative overflow-hidden">
-                  {/* Using colored placeholder since we don't have images yet */}
-                  <div className="absolute inset-0 bg-red-100/50 flex items-center justify-center">
-                    <ChefHat className="w-12 h-12 text-red-200 group-hover:scale-110 transition-transform duration-500" />
-                  </div>
+                  <Image src={recipe.image} alt={recipe.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <h4 className="font-black text-gray-900 text-xl mb-2">{recipe.title}</h4>

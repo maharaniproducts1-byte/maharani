@@ -45,13 +45,27 @@ export default function RecipePage({ params }: { params: { slug: string } }) {
       </header>
 
       {/* Hero Section */}
-      <div className="bg-red-50/50 border-b border-red-100 pt-16 pb-20">
-        <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
+      <div className="relative border-b border-red-100 pb-20 pt-24 min-h-[400px] flex items-center justify-center">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image src={recipe.image} alt={recipe.title} fill className="object-cover" priority />
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#FFFDF9]"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 text-red-600 font-extrabold text-xs uppercase tracking-widest bg-white px-4 py-1.5 rounded-full shadow-sm border border-red-100">
             Heritage Recipe
           </div>
-          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight">{recipe.title}</h1>
-          <p className="text-lg text-gray-600 font-medium max-w-2xl mx-auto">{recipe.description}</p>
+          <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight drop-shadow-sm">{recipe.title}</h1>
+          <p className="text-lg text-gray-800 font-bold max-w-2xl mx-auto drop-shadow-sm">{recipe.description}</p>
+          
+          {/* Main Dish Image */}
+          <div className="flex justify-center mt-8 mb-4">
+            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-4 border-white shadow-2xl overflow-hidden">
+              <Image src={recipe.image} alt={recipe.title} fill className="object-cover" />
+            </div>
+          </div>
           
           <div className="flex flex-wrap justify-center gap-6 md:gap-12 pt-6">
             <div className="flex flex-col items-center gap-2">
