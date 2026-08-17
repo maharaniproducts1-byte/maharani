@@ -107,7 +107,7 @@ export const recipesData = [
     slug: "payasam",
     title: "Authentic Payasam",
     description: "Add milk or rehydrated coconut for authentic sweet preparations.",
-    image: "/recipes/payasam-placeholder.jpg",
+    image: "/recipes/payasam-placeholder.png",
     prepTime: "10 mins",
     cookTime: "30 mins",
     servings: "6",
