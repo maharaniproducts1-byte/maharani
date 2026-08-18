@@ -48,60 +48,29 @@ export default function MaharaniLandingPage() {
   const [isPreloading, setIsPreloading] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
 
-  // --- Canvas Scroll Sequence Logic ---
+  // --- Video Scroll Sequence Logic ---
   const heroContainerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  const frameCount = 120;
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     // Respect prefers-reduced-motion
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery.matches) return;
-    
-    // 1. Preload Images optimized for mobile/iPhone
-    const preloadImages = () => {
-      let loadedCount = 0;
-      const initialFramesRequired = 20; // Unblock UI after 20 frames
-      
-      const loadFrame = (i: number) => {
-        const img = new window.Image();
-        img.src = `/hero-frames/${i.toString().padStart(4, '0')}.jpg`;
-        imagesRef.current[i] = img;
-        
-        const handleLoad = () => {
-          loadedCount++;
-          // Only track progress up to the required initial frames to unblock faster
-          if (loadedCount <= initialFramesRequired) {
-            setLoadProgress(Math.floor((loadedCount / initialFramesRequired) * 100));
-          }
-          if (loadedCount === initialFramesRequired) {
-             setTimeout(() => setIsPreloading(false), 500); 
-          }
-          if (i === 0) {
-             renderFrame(0);
-          }
-        };
+    if (mediaQuery.matches) {
+      setIsPreloading(false);
+      return;
+    }
 
-        img.onload = handleLoad;
-        img.onerror = handleLoad; 
-      };
-
-      // Load initial burst of frames
-      for (let i = 0; i < Math.min(initialFramesRequired, frameCount); i++) {
-        loadFrame(i);
-      }
-      
-      // Lazy load the remaining frames in the background to prevent network/memory choking on mobile
-      setTimeout(() => {
-        for (let i = initialFramesRequired; i < frameCount; i++) {
-          // Stagger the network requests to avoid connection limits
-          setTimeout(() => loadFrame(i), (i - initialFramesRequired) * 15);
+    // Simulate preloader for the video buffering
+    let progressInterval = setInterval(() => {
+      setLoadProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          setTimeout(() => setIsPreloading(false), 500);
+          return 100;
         }
-      }, 200);
-    };
-
-    preloadImages();
+        return prev + 15;
+      });
+    }, 100);
 
     let animationFrameId: number;
     let targetProgress = 0;
@@ -122,84 +91,33 @@ export default function MaharaniLandingPage() {
       targetProgress = progress;
     };
 
-    const renderFrame = (index: number) => {
-      const canvas = canvasRef.current;
-      const ctx = canvas?.getContext('2d');
-      
-      // Find nearest loaded frame if target isn't loaded (prevents blank screen if scrolling fast)
-      let img = imagesRef.current[index];
-      if (!img || !img.complete) {
-         for (let i = index - 1; i >= 0; i--) {
-            if (imagesRef.current[i] && imagesRef.current[i].complete) {
-               img = imagesRef.current[i];
-               break;
-            }
-         }
-      }
-      
-      if (!canvas || !ctx || !img || !img.complete || img.naturalWidth === 0) return;
-
-      const dpr = window.devicePixelRatio || 1;
-      const cw = canvas.clientWidth || window.innerWidth;
-      const ch = canvas.clientHeight || window.innerHeight;
-      
-      canvas.width = cw * dpr;
-      canvas.height = ch * dpr;
-      ctx.scale(dpr, dpr);
-      
-      const imgRatio = img.naturalWidth / img.naturalHeight;
-      const canvasRatio = cw / ch;
-      
-      let drawWidth = cw;
-      let drawHeight = ch;
-      let offsetX = 0;
-      let offsetY = 0;
-      
-      if (imgRatio > canvasRatio) {
-        drawWidth = ch * imgRatio;
-        offsetX = (cw - drawWidth) / 2;
-      } else {
-        drawHeight = cw / imgRatio;
-        offsetY = (ch - drawHeight) / 2;
-      }
-      
-      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-    };
-
-    let lastDrawnFrame = -1;
-
-    const updateCanvas = () => {
-      if (imagesRef.current.length > 0) {
+    const updateVideo = () => {
+      if (videoRef.current && videoRef.current.duration) {
+        // Smooth interpolation
         currentProgress = currentProgress + (targetProgress - currentProgress) * 0.08;
-        const frameIndex = Math.min(
-          frameCount - 1,
-          Math.max(0, Math.floor(currentProgress * frameCount))
-        );
         
-        if (frameIndex !== lastDrawnFrame) {
-          renderFrame(frameIndex);
-          lastDrawnFrame = frameIndex;
+        // Convert progress (0 to 1) to time in seconds
+        const targetTime = currentProgress * videoRef.current.duration;
+        
+        // Check if we need to update to avoid setting it constantly if it hasn't changed much
+        if (Math.abs(videoRef.current.currentTime - targetTime) > 0.01) {
+          videoRef.current.currentTime = targetTime;
         }
       }
-      animationFrameId = requestAnimationFrame(updateCanvas);
+      animationFrameId = requestAnimationFrame(updateVideo);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", () => {
-        handleScroll();
-        const frameIndex = Math.min(
-          frameCount - 1,
-          Math.max(0, Math.floor(currentProgress * frameCount))
-        );
-        renderFrame(frameIndex);
-    });
+    window.addEventListener("resize", handleScroll);
     
     handleScroll();
-    animationFrameId = requestAnimationFrame(updateCanvas);
+    animationFrameId = requestAnimationFrame(updateVideo);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       cancelAnimationFrame(animationFrameId);
+      clearInterval(progressInterval);
     };
   }, []);
 
@@ -239,9 +157,14 @@ export default function MaharaniLandingPage() {
       <section id="home" className="relative">
         <div ref={heroContainerRef} className="relative h-[350vh]">
           <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-black -mt-[76px]">
-            <canvas 
-              ref={canvasRef}
-              className="absolute top-0 left-0 w-full h-full -z-30"
+            <video 
+              ref={videoRef}
+              src="/hero-video.mp4"
+              playsInline 
+              muted 
+              preload="auto"
+              className="absolute top-0 left-0 w-full h-full object-cover -z-30 opacity-80"
+              onLoadedData={() => setLoadProgress(100)} // Ensure preloader completes when video is ready
             />
           </div>
         </div>
