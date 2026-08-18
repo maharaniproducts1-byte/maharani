@@ -136,7 +136,7 @@ export default function MaharaniLandingPage() {
          }
       }
       
-      if (!canvas || !ctx || !img || !img.complete || img.naturalWidth === 0) return;
+      if (!canvas || !ctx || !img || !img.complete || img.naturalWidth === 0) return false;
 
       const dpr = window.devicePixelRatio || 1;
       const cw = canvas.clientWidth || window.innerWidth;
@@ -163,6 +163,7 @@ export default function MaharaniLandingPage() {
       }
       
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+      return true;
     };
 
     let lastDrawnFrame = -1;
@@ -176,8 +177,10 @@ export default function MaharaniLandingPage() {
         );
         
         if (frameIndex !== lastDrawnFrame) {
-          renderFrame(frameIndex);
-          lastDrawnFrame = frameIndex;
+          const success = renderFrame(frameIndex);
+          if (success) {
+            lastDrawnFrame = frameIndex;
+          }
         }
       }
       animationFrameId = requestAnimationFrame(updateCanvas);
@@ -191,6 +194,7 @@ export default function MaharaniLandingPage() {
           Math.max(0, Math.floor(currentProgress * frameCount))
         );
         renderFrame(frameIndex);
+        lastDrawnFrame = -1; // Force next rAF to redraw
     });
     
     handleScroll();
