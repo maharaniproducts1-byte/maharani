@@ -244,7 +244,7 @@ export default function MaharaniLandingPage() {
           <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-black -mt-[76px]">
             <canvas 
               ref={canvasRef}
-              className="absolute top-0 left-0 w-full h-full object-cover -z-30 opacity-80"
+              className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
             />
           </div>
         </div>
