@@ -152,7 +152,7 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
             </div>
           </div>
 
-          {(recipe.tips?.length > 0 || recipe.servingSuggestion) && (
+          {(((recipe.tips?.length ?? 0) > 0) || recipe.servingSuggestion) && (
             <div className="bg-yellow-50 p-8 rounded-[2rem] border border-yellow-100 shadow-sm">
               <h4 className="text-xl font-black text-gray-900 mb-4">Chef&apos;s Notes</h4>
               {recipe.tips?.map((tip, idx) => (
