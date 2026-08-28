@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, Clock, Users, Flame, CheckCircle2 } from "lucide-react";
+import { ChevronLeft, Clock, Users, Flame, CheckCircle2, Calculator } from "lucide-react";
 import { recipesData } from "@/data/recipes";
 
 // Type for Next.js 15 route params (App Router)
@@ -40,7 +40,7 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
             <Image src="/logo-shield-v2.png" alt="Maharani Official Logo" width={40} height={50} className="object-contain h-10 w-auto" />
             <span className="font-black text-gray-900 hidden sm:block">Maharani Agro Products</span>
           </Link>
-          <Link href="/#recipes" className="flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-red-600 transition-colors">
+          <Link href="/recipes" className="flex items-center gap-2 text-sm font-bold text-gray-600 hover:text-red-600 transition-colors">
             <ChevronLeft className="w-4 h-4" /> Back to Recipes
           </Link>
         </div>
@@ -57,7 +57,7 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
 
         <div className="max-w-4xl mx-auto px-6 text-center space-y-6 relative z-10">
           <div className="inline-flex items-center gap-2 text-red-600 font-extrabold text-xs uppercase tracking-widest bg-white px-4 py-1.5 rounded-full shadow-sm border border-red-100">
-            Heritage Recipe
+            {recipe.category || "Heritage Recipe"}
           </div>
           <h1 className="text-4xl md:text-6xl font-black text-gray-900 tracking-tight drop-shadow-sm">{recipe.title}</h1>
           <p className="text-lg text-gray-800 font-bold max-w-2xl mx-auto drop-shadow-sm">{recipe.description}</p>
@@ -104,6 +104,18 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
                 </li>
               ))}
             </ul>
+
+            <div className="mt-10 pt-8 border-t border-gray-100">
+              <h4 className="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <Calculator className="w-4 h-4 text-red-600" /> Need help preparing coconut?
+              </h4>
+              <p className="text-xs text-gray-500 mb-4 font-medium leading-relaxed">
+                Use our interactive rehydration calculator to find the exact powder-to-water ratios.
+              </p>
+              <Link href="/how-to-use#calculator" className="inline-block w-full text-center bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition-colors border border-red-100 font-bold text-xs py-2.5 rounded-lg">
+                Open Rehydration Calculator
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -112,35 +124,47 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
           <div>
             <h3 className="text-3xl font-black text-gray-900 mb-8">Preparation Steps</h3>
             <div className="space-y-6">
-              {recipe.steps.map((step, idx) => (
-                <div key={idx} className="flex gap-6 group">
-                  <div className="flex flex-col items-center">
-                    <span className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-black shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors">
-                      {idx + 1}
-                    </span>
-                    {idx < recipe.steps.length - 1 && (
-                      <div className="w-px h-full bg-gray-200 my-2"></div>
-                    )}
+              {recipe.steps.map((step, idx) => {
+                // To safely handle the format "01 — text"
+                const hasPrefix = step.includes(" — ");
+                const stepParts = step.split(" — ");
+                const text = hasPrefix ? stepParts[1] : step;
+
+                return (
+                  <div key={idx} className="flex gap-6 group">
+                    <div className="flex flex-col items-center">
+                      <span className="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center font-black shrink-0 group-hover:bg-red-600 group-hover:text-white transition-colors shadow-sm">
+                        {idx + 1}
+                      </span>
+                      {idx < recipe.steps.length - 1 && (
+                        <div className="w-px h-full bg-gray-200 my-2 group-hover:bg-red-200 transition-colors"></div>
+                      )}
+                    </div>
+                    <div className="pt-2 pb-8">
+                      {hasPrefix && (
+                        <h4 className="text-lg font-black text-gray-900 mb-1">{stepParts[0].replace(/^[0-9]+ /, '')}</h4>
+                      )}
+                      <p className="text-gray-800 font-medium leading-relaxed">{text}</p>
+                    </div>
                   </div>
-                  <div className="pt-2 pb-8">
-                    <p className="text-gray-800 font-medium leading-relaxed">{step}</p>
-                  </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
 
           {(recipe.tips?.length > 0 || recipe.servingSuggestion) && (
-            <div className="bg-yellow-50 p-8 rounded-2xl border border-yellow-100">
+            <div className="bg-yellow-50 p-8 rounded-[2rem] border border-yellow-100 shadow-sm">
               <h4 className="text-xl font-black text-gray-900 mb-4">Chef&apos;s Notes</h4>
               {recipe.tips?.map((tip, idx) => (
-                <p key={idx} className="text-sm font-medium text-gray-700 mb-2">
-                  <span className="font-bold">Tip:</span> {tip}
+                <p key={idx} className="text-sm font-medium text-gray-700 mb-3">
+                  <span className="font-bold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-md text-xs uppercase tracking-wide mr-2">Tip</span> 
+                  {tip}
                 </p>
               ))}
               {recipe.servingSuggestion && (
-                <p className="text-sm font-medium text-gray-700 mt-4 pt-4 border-t border-yellow-200">
-                  <span className="font-bold">Serving Suggestion:</span> {recipe.servingSuggestion}
+                <p className="text-sm font-medium text-gray-700 mt-6 pt-6 border-t border-yellow-200">
+                  <span className="font-bold text-yellow-800 bg-yellow-100 px-2 py-0.5 rounded-md text-xs uppercase tracking-wide mr-2">Serving Suggestion</span> 
+                  {recipe.servingSuggestion}
                 </p>
               )}
             </div>

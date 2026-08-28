@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { siteConfig } from "@/config/site";
+import { motion, Variants } from "framer-motion";
 import { 
   Sparkles, 
   Droplets, 
@@ -30,12 +32,12 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const fadeUp: any = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -45,306 +47,161 @@ const staggerContainer = {
 
 export default function MaharaniLandingPage() {
   // --- Preloader State ---
-  const [isPreloading, setIsPreloading] = useState(true);
-  const [loadProgress, setLoadProgress] = useState(0);
-
-  // --- Canvas Scroll Sequence Logic ---
-  const heroContainerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const imagesRef = useRef<HTMLImageElement[]>([]);
-  const frameCount = 120;
-
-  useEffect(() => {
-    // Respect prefers-reduced-motion
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mediaQuery.matches) {
-      setIsPreloading(false);
-      return;
-    }
-    
-    // 1. Preload Images optimized for mobile/iPhone
-    const preloadImages = () => {
-      let loadedCount = 0;
-      const initialFramesRequired = 20; // Unblock UI after 20 frames
-      
-      const loadFrame = (i: number) => {
-        const img = new window.Image();
-        // ffmpeg extracts 1-indexed (0001.jpg), so add 1 to i
-        img.src = `/hero-frames/${(i + 1).toString().padStart(4, '0')}.jpg`;
-        imagesRef.current[i] = img;
-        
-        const handleLoad = () => {
-          loadedCount++;
-          if (loadedCount <= initialFramesRequired) {
-            setLoadProgress(Math.floor((loadedCount / initialFramesRequired) * 100));
-          }
-          if (loadedCount === initialFramesRequired) {
-             setTimeout(() => setIsPreloading(false), 500); 
-          }
-          if (i === 0) {
-             renderFrame(0);
-          }
-        };
-
-        img.onload = handleLoad;
-        img.onerror = handleLoad; 
-      };
-
-      for (let i = 0; i < Math.min(initialFramesRequired, frameCount); i++) {
-        loadFrame(i);
-      }
-      
-      setTimeout(() => {
-        for (let i = initialFramesRequired; i < frameCount; i++) {
-          setTimeout(() => loadFrame(i), (i - initialFramesRequired) * 15);
-        }
-      }, 200);
-    };
-
-    preloadImages();
-
-    let animationFrameId: number;
-    let targetProgress = 0;
-    let currentProgress = 0;
-
-    const handleScroll = () => {
-      if (!heroContainerRef.current) return;
-      
-      const { top, height } = heroContainerRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      
-      const scrollableDistance = height - windowHeight;
-      const scrolled = -top;
-      
-      let progress = scrolled / scrollableDistance;
-      progress = Math.max(0, Math.min(1, progress));
-      
-      targetProgress = progress;
-    };
-
-    const renderFrame = (index: number) => {
-      const canvas = canvasRef.current;
-      const ctx = canvas?.getContext('2d');
-      
-      let img = imagesRef.current[index];
-      if (!img || !img.complete) {
-         for (let i = index - 1; i >= 0; i--) {
-            if (imagesRef.current[i] && imagesRef.current[i].complete) {
-               img = imagesRef.current[i];
-               break;
-            }
-         }
-      }
-      
-      if (!canvas || !ctx || !img || !img.complete || img.naturalWidth === 0) return false;
-
-      const dpr = window.devicePixelRatio || 1;
-      const cw = canvas.clientWidth || window.innerWidth;
-      const ch = canvas.clientHeight || window.innerHeight;
-      
-      canvas.width = cw * dpr;
-      canvas.height = ch * dpr;
-      ctx.scale(dpr, dpr);
-      
-      const imgRatio = img.naturalWidth / img.naturalHeight;
-      const canvasRatio = cw / ch;
-      
-      let drawWidth = cw;
-      let drawHeight = ch;
-      let offsetX = 0;
-      let offsetY = 0;
-      
-      if (imgRatio > canvasRatio) {
-        drawWidth = ch * imgRatio;
-        offsetX = (cw - drawWidth) / 2;
-      } else {
-        drawHeight = cw / imgRatio;
-        offsetY = (ch - drawHeight) / 2;
-      }
-      
-      ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-      return true;
-    };
-
-    let lastDrawnFrame = -1;
-
-    const updateCanvas = () => {
-      if (imagesRef.current.length > 0) {
-        currentProgress = currentProgress + (targetProgress - currentProgress) * 0.08;
-        const frameIndex = Math.min(
-          frameCount - 1,
-          Math.max(0, Math.floor(currentProgress * frameCount))
-        );
-        
-        if (frameIndex !== lastDrawnFrame) {
-          const success = renderFrame(frameIndex);
-          if (success) {
-            lastDrawnFrame = frameIndex;
-          }
-        }
-      }
-      animationFrameId = requestAnimationFrame(updateCanvas);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", () => {
-        handleScroll();
-        const frameIndex = Math.min(
-          frameCount - 1,
-          Math.max(0, Math.floor(currentProgress * frameCount))
-        );
-        renderFrame(frameIndex);
-        lastDrawnFrame = -1; // Force next rAF to redraw
-    });
-    
-    handleScroll();
-    animationFrameId = requestAnimationFrame(updateCanvas);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
-
   return (
     <div className="bg-[#FFFDF9] text-slate-800 selection:bg-red-600 selection:text-white">
-      <AnimatePresence>
-        {isPreloading && (
-          <motion.div
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="fixed inset-0 z-[9999] bg-[#FFFDF9] flex flex-col items-center justify-center"
-          >
-            <motion.div
-              animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="mb-8"
-            >
-              <Image src="/logo-shield-v2.png" alt="Maharani Logo" width={120} height={150} className="object-contain" priority />
-            </motion.div>
-            <div className="w-64 h-1 bg-gray-200 rounded-full overflow-hidden mb-4 shadow-inner">
-              <motion.div 
-                className="h-full bg-red-600 rounded-full shadow-md"
-                initial={{ width: 0 }}
-                animate={{ width: `${loadProgress}%` }}
-                transition={{ duration: 0.1 }}
-              />
-            </div>
-            <p className="text-sm font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-red-500" /> Preparing Freshness... {loadProgress}%
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Hero Section */}
-      <section id="home" className="relative">
-        <div ref={heroContainerRef} className="relative h-[350vh]">
-          <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-black -mt-[76px]">
-            <canvas 
-              ref={canvasRef}
-              className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
-            />
-          </div>
-        </div>
+      <section id="home" className="relative pt-32 pb-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-red-50/50 to-transparent -z-10" />
         
-        <div className="relative z-10 pb-32 -mt-16 md:-mt-32">
-          <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full bg-white/70 backdrop-blur-xl rounded-[3rem] p-12 border border-white/80 shadow-2xl shadow-red-900/5">
-            <motion.div 
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-              className="lg:col-span-7 space-y-8"
-            >
-              <motion.div variants={fadeUp}>
-                <motion.div 
-                  animate={{ scale: [1, 1.02, 1] }}
-                  transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 border border-yellow-300 px-5 py-2 rounded-full text-gray-900 text-xs md:text-sm font-black uppercase tracking-widest shadow-xl shadow-yellow-200/50"
-                >
-                  <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-white" /> Approaching 50 Years of Excellence
-                </motion.div>
-              </motion.div>
-
-              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-7xl font-black text-gray-900 leading-[1.1] tracking-tighter drop-shadow-sm">
-                Instant Freshness. <br />
-                <span className="text-red-600 bg-clip-text">Pure Kerala Coconut.</span>
-              </motion.h1>
-
-              <motion.p variants={fadeUp} className="text-base sm:text-lg lg:text-xl text-gray-800 leading-relaxed max-w-2xl font-bold drop-shadow-sm">
-                Crafted from select Kerala coconuts with natural coconut oils intact. 
-                Zero added preservatives, zero cholesterol, and 100% pure culinary convenience for modern kitchens.
-              </motion.p>
-
-              <motion.div variants={fadeUp} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
-                {[
-                  { label: "Dairy Free", icon: Heart },
-                  { label: "Zero Cholesterol", icon: Activity },
-                  { label: "Gluten Free", icon: Wheat },
-                  { label: "Rich Fibre", icon: Flame },
-                ].map((badge, index) => (
-                  <div key={index} className="flex flex-col items-center justify-center gap-2 p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-gray-200/80 shadow-md hover:shadow-lg hover:border-red-100 transition-all group cursor-default">
-                    <badge.icon className="w-6 h-6 text-red-500 group-hover:scale-110 group-hover:text-red-600 transition-transform" />
-                    <span className="text-xs font-bold text-gray-900 text-center">{badge.label}</span>
-                  </div>
-                ))}
-              </motion.div>
-
-              <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-6">
-                <a 
-                  href="/rehydration-guide"
-                  className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 transition-all flex items-center gap-2 group"
-                >
-                  Interactive How-To-Use <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </a>
-                <a 
-                  href="/retail-pack"
-                  className="bg-white border-2 border-gray-200 hover:border-red-600 hover:text-red-600 text-gray-900 px-8 py-4 rounded-2xl font-bold text-sm shadow-md hover:shadow-xl transition-all"
-                >
-                  View Retail Pack
-                </a>
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center w-full relative z-10">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="lg:col-span-7 space-y-8"
+          >
+            <motion.div variants={fadeUp}>
+              <motion.div 
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 border border-yellow-300 px-5 py-2 rounded-full text-gray-900 text-xs md:text-sm font-black uppercase tracking-widest shadow-xl shadow-yellow-200/50"
+              >
+                <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-white" /> Approaching 50 Years of Excellence
               </motion.div>
             </motion.div>
 
-            {/* Product Render Display Box */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
-              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
-              className="lg:col-span-5 relative flex justify-center perspective-1000"
-            >
-              <div className="w-full bg-gradient-to-br from-red-600 to-red-900 rounded-[2.5rem] p-8 lg:p-10 text-white shadow-2xl shadow-red-900/40 relative overflow-hidden group border border-red-500/30">
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay pointer-events-none"></div>
-                
-                <div className="absolute top-0 right-0 bg-white text-red-700 font-black text-[10px] px-5 py-2 rounded-bl-3xl uppercase tracking-widest shadow-lg">
-                  New Retail Design
-                </div>
+            <motion.h1 variants={fadeUp} className="text-5xl sm:text-6xl lg:text-7xl font-black text-gray-900 leading-[1.1] tracking-tighter drop-shadow-sm">
+              Instant Freshness. <br />
+              <span className="text-red-600 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-red-800">Pure Kerala Coconut.</span>
+            </motion.h1>
 
-                <div className="text-center space-y-6 pt-6 relative z-10">
-                  <motion.div 
-                    animate={{ y: [-5, 5, -5] }} 
-                    transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  >
-                    <Image src="/pouch-250g-front.png" alt="Maharani 250g Pouch Front" width={240} height={300} className="mx-auto drop-shadow-2xl object-contain h-56 w-auto mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
-                  </motion.div>
-                  
-                  <div className="space-y-1">
-                    <span className="text-xs font-bold uppercase tracking-widest text-red-200/80">
-                      Desiccated Coconut Powder
-                    </span>
-                    <h3 className="text-4xl font-black tracking-tight drop-shadow-sm">250g Pouch</h3>
-                  </div>
-                  
-                  <p className="text-xs text-red-100 leading-relaxed max-w-xs mx-auto opacity-90">
-                    Specially packaged for Tier-1 retail markets with instant QR rehydration guide.
-                  </p>
+            <motion.p variants={fadeUp} className="text-base sm:text-lg lg:text-xl text-gray-800 leading-relaxed max-w-2xl font-bold drop-shadow-sm">
+              Crafted from select Kerala coconuts with natural coconut oils intact. 
+              Zero added preservatives, zero cholesterol, and 100% pure culinary convenience for modern kitchens.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+              {[
+                { label: "Dairy Free", icon: Heart },
+                { label: "Zero Cholesterol", icon: Activity },
+                { label: "Gluten Free", icon: Wheat },
+                { label: "Rich Fibre", icon: Flame },
+              ].map((badge, index) => (
+                <div key={index} className="flex flex-col items-center justify-center gap-2 p-4 bg-white/70 backdrop-blur-md rounded-2xl border border-gray-200/80 shadow-md hover:shadow-lg hover:border-red-100 transition-all group cursor-default">
+                  <badge.icon className="w-6 h-6 text-red-500 group-hover:scale-110 group-hover:text-red-600 transition-transform" />
+                  <span className="text-xs font-bold text-gray-900 text-center">{badge.label}</span>
                 </div>
+              ))}
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-4 pt-6">
+              <Link href="/products"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 transition-all flex items-center gap-2 group"
+              >
+                Explore Products <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <a href={siteConfig.amazon1kgUrl} target="_blank" rel="noopener noreferrer"
+                className="bg-white border-2 border-gray-200 hover:border-red-600 hover:text-red-600 text-gray-900 px-8 py-4 rounded-2xl font-bold text-sm shadow-md hover:shadow-xl transition-all flex items-center gap-2"
+              >
+                Buy on Amazon
+              </a>
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, rotateY: -10 }}
+            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, type: "spring" }}
+            className="lg:col-span-5 relative flex justify-center perspective-1000"
+          >
+            <div className="w-full bg-gradient-to-br from-red-600 to-red-900 rounded-[2.5rem] p-8 lg:p-10 text-white shadow-2xl shadow-red-900/40 relative overflow-hidden group border border-red-500/30">
+              <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 mix-blend-overlay pointer-events-none"></div>
+              
+              <div className="absolute top-0 right-0 bg-white text-red-700 font-black text-[10px] px-5 py-2 rounded-bl-3xl uppercase tracking-widest shadow-lg">
+                Premium Grade
+              </div>
+
+              <div className="text-center space-y-6 pt-6 relative z-10">
+                <motion.div 
+                  animate={{ y: [-5, 5, -5] }} 
+                  transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                >
+                  <Image src="/pouch-250g-front.png" alt="Maharani 250g Pouch Front" width={240} height={300} className="mx-auto drop-shadow-2xl object-contain h-64 w-auto mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
+                </motion.div>
+                
+                <div className="space-y-1">
+                  <span className="text-xs font-bold uppercase tracking-widest text-red-200/80">
+                    Desiccated Coconut Powder
+                  </span>
+                  <h3 className="text-4xl font-black tracking-tight drop-shadow-sm">250g Pouch</h3>
+                </div>
+                
+                <p className="text-xs text-red-100 leading-relaxed max-w-xs mx-auto opacity-90">
+                  Specially packaged for Tier-1 retail markets with instant QR rehydration guide.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+
+      {/* Clients Section */}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-6">
+            <motion.h3 variants={fadeUp} className="text-xl font-bold text-gray-400 uppercase tracking-widest">
+              Those We Serve
+            </motion.h3>
+            <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-8 md:gap-16 pt-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-xl font-black text-gray-900 tracking-tighter">SYMEGA</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">India</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-xl font-black text-red-600 tracking-tighter">Tasty Foods</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">U.A.E</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-xl font-black text-gray-900 tracking-tighter">Shakthi Group</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">U.S.A</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-xl font-black text-gray-800 tracking-tighter">GCR GROUP</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">U.A.E</span>
+              </div>
+              <div className="flex flex-col items-center gap-1">
+                <span className="text-xl font-black text-gray-900 tracking-tighter">ORKLA</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">India & U.A.E</span>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Certifications Section */}
+      <section className="py-16 bg-[#FFFDF9]">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-8">
+            <motion.h2 variants={fadeUp} className="text-3xl font-black text-gray-900 tracking-tight">Our Certifications</motion.h2>
+            <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-12 pt-4">
+              <div className="w-24 h-24 rounded-full border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm">
+                <span className="font-black text-red-700 text-lg">GMP</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">Certified</span>
+              </div>
+              <div className="w-24 h-24 rounded-full border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm">
+                <span className="font-black text-green-600 text-lg">HACCP</span>
+                <span className="text-[10px] font-bold text-gray-500 uppercase">Certified</span>
+              </div>
+              <div className="w-24 h-16 border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm rounded-lg">
+                <span className="font-black text-blue-800 text-2xl tracking-tighter">LMS</span>
+              </div>
+              <div className="w-24 h-16 border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm rounded-lg">
+                <span className="font-black text-gray-700 text-xl tracking-widest">eiaci</span>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -483,10 +340,11 @@ export default function MaharaniLandingPage() {
           <div>
             <h5 className="font-black text-gray-900 mb-6">Explore</h5>
             <ul className="space-y-4 text-sm font-medium text-gray-500">
-              <li><a href="/about" className="hover:text-red-600 transition-colors">Our Heritage</a></li>
-              <li><a href="/retail-pack" className="hover:text-red-600 transition-colors">Retail Products</a></li>
-              <li><a href="/rehydration-guide" className="hover:text-red-600 transition-colors">How to Use</a></li>
-              <li><a href="/recipes" className="hover:text-red-600 transition-colors">Recipes</a></li>
+              <li><Link href="/about" className="hover:text-red-600 transition-colors">Our Heritage</Link></li>
+              <li><Link href="/products" className="hover:text-red-600 transition-colors">Retail Products</Link></li>
+              <li><Link href="/how-to-use" className="hover:text-red-600 transition-colors">How to Use</Link></li>
+              <li><Link href="/recipes" className="hover:text-red-600 transition-colors">Recipes</Link></li>
+              <li><a href={siteConfig.amazon1kgUrl} target="_blank" rel="noopener noreferrer" className="hover:text-red-600 transition-colors font-bold flex items-center gap-1">Buy on Amazon <ArrowRight className="w-3 h-3"/></a></li>
             </ul>
           </div>
           <div>

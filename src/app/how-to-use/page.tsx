@@ -1,15 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { howToUseData } from "@/data/how-to-use";
+import { Droplets, Clock, Flame, Info } from "lucide-react";
+import { siteConfig } from "@/config/site";
 
-const fadeUp: any = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -17,30 +19,72 @@ const staggerContainer = {
   }
 };
 
-export default function RehydrationGuidePage() {
+export default function HowToUsePage() {
   const [coconutGrams, setCoconutGrams] = useState<number>(100);
   const [activeTab, setActiveTab] = useState<"rehydrate" | "milk">("rehydrate");
-  const warmWaterMl = activeTab === "rehydrate" ? coconutGrams * 0.5 : coconutGrams * 1.5;
-
+  
+  // Logic: For grated substitute (1:0.5 ratio approx), for milk (1:1.5 ratio)
+  const warmWaterMl = activeTab === "rehydrate" ? Math.round(coconutGrams * 0.5) : Math.round(coconutGrams * 1.5);
   const [selectedLanguageIndex, setSelectedLanguageIndex] = useState(0);
 
   return (
-    <div className="bg-[#FFFDF9] min-h-screen pt-12">
-      <section className="py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div 
-            initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
-            className="text-center max-w-3xl mx-auto mb-14 space-y-4"
-          >
-            <motion.h2 variants={fadeUp} className="text-4xl font-black text-gray-900 tracking-tight">
-              Rehydration Calculator
-            </motion.h2>
-            <motion.p variants={fadeUp} className="text-base text-gray-600 font-medium">
-              Select your required quantity below to calculate the exact warm water ratio and preparation time for perfect results every time.
+    <div className="bg-[#FFFDF9] min-h-screen pt-12 pb-24">
+      {/* Intro Section - Suitable for QR Landing */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
+          <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
+            <motion.div variants={fadeUp} className="inline-flex items-center gap-2 text-red-600 font-extrabold text-xs uppercase tracking-widest bg-red-50 px-4 py-1.5 rounded-full mb-4">
+              <Info className="w-4 h-4" /> Usage Guide
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight leading-tight">
+              Instant Rehydration
+            </motion.h1>
+            <motion.p variants={fadeUp} className="text-base text-gray-700 mt-6 font-medium leading-relaxed max-w-2xl mx-auto">
+              Maharani Desiccated Coconut Powder is crafted to perfectly substitute freshly grated coconut. 
+              By following our precise rehydration method, you will restore the natural texture, aroma, and rich oils required for traditional cooking.
             </motion.p>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Calculator Switcher */}
+      {/* Practical Usage & Applications */}
+      {/* Culinary Uses */}
+      <section className="pb-24">
+         <div className="max-w-6xl mx-auto px-6">
+            <motion.div 
+               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}
+               className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            >
+               <motion.div variants={fadeUp} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mb-6">
+                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.701 2.701 0 00-1.5-.454M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18zm-3-9v-2a2 2 0 00-2-2H8a2 2 0 00-2 2v2h12z" /></svg>
+                  </div>
+                  <h3 className="text-xl font-black text-gray-900 mb-3">Baking</h3>
+                  <p className="text-sm text-gray-600 font-medium">Adds flavor and texture to cakes, cookies, muffins, and other baked goods.</p>
+               </motion.div>
+               <motion.div variants={fadeUp} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
+                     <Flame className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-black text-gray-900 mb-3">Cooking</h3>
+                  <p className="text-sm text-gray-600 font-medium">Enhances flavor and adds creaminess to curries, chutneys, and porridge.</p>
+               </motion.div>
+               <motion.div variants={fadeUp} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center">
+                  <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6">
+                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                     </svg>
+                  </div>
+                  <h3 className="text-xl font-black text-gray-900 mb-3">Toppings and Fillers</h3>
+                  <p className="text-sm text-gray-600 font-medium">Sprinkle it on yogurt, oatmeal, or desserts for added crunch and flavor.</p>
+               </motion.div>
+            </motion.div>
+         </div>
+      </section>
+
+      {/* Calculator Section */}
+      <section className="pb-24">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="flex justify-center mb-10"
@@ -48,30 +92,29 @@ export default function RehydrationGuidePage() {
             <div className="bg-gray-50 p-1.5 rounded-2xl border border-gray-200 flex gap-1 shadow-inner">
               <button
                 onClick={() => setActiveTab("rehydrate")}
-                className={`px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`px-6 md:px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                   activeTab === "rehydrate"
                     ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
                     : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
-                Grated Coconut Substitute
+                Grated Substitute
               </button>
               <button
                 onClick={() => setActiveTab("milk")}
-                className={`px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`px-6 md:px-8 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
                   activeTab === "milk"
                     ? "bg-red-600 text-white shadow-lg shadow-red-600/20"
                     : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
-                Fresh Coconut Milk
+                Coconut Milk
               </button>
             </div>
           </motion.div>
 
-          {/* Calculator Box */}
           <motion.div 
-             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
              className="bg-white rounded-[2.5rem] p-8 lg:p-12 border border-gray-100 shadow-2xl shadow-gray-200/50 grid grid-cols-1 md:grid-cols-2 gap-12 items-start relative overflow-hidden"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-red-50 rounded-full blur-3xl -z-10 opacity-60 translate-x-1/2 -translate-y-1/2"></div>
@@ -79,7 +122,7 @@ export default function RehydrationGuidePage() {
             <div className="space-y-10">
               <h3 className="text-2xl font-black text-gray-900 flex items-center gap-3">
                 <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm">1</span>
-                {activeTab === "rehydrate" ? "Ratio Calculator" : "Milk Extractor"}
+                Interactive Calculator
               </h3>
               
               <div className="space-y-4">
@@ -93,7 +136,7 @@ export default function RehydrationGuidePage() {
                     max="250" 
                     step="10"
                     value={coconutGrams}
-                    onChange={(e) => setCoconutGrams(Number(e.target.value))}
+                    onChange={(e) => setCoconutGrams(Number(e.target.value) || 20)}
                     className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-red-600"
                   />
                   <div className="flex justify-between text-xs font-bold text-gray-400 mt-3">
@@ -106,7 +149,7 @@ export default function RehydrationGuidePage() {
                     >
                       {coconutGrams} g
                     </motion.div>
-                    <span>250g (Full Pack)</span>
+                    <span>250g</span>
                   </div>
                 </div>
               </div>
@@ -125,7 +168,7 @@ export default function RehydrationGuidePage() {
                 </div>
                 <div className="h-px w-full bg-red-100"></div>
                 <div className="flex justify-between items-center text-sm">
-                  <span className="font-semibold text-gray-500">Resting / Soak Time</span>
+                  <span className="font-semibold text-gray-500 flex items-center gap-2"><Clock className="w-4 h-4"/> Resting Time</span>
                   <span className="font-bold text-gray-900 bg-white px-3 py-1 rounded-lg border border-gray-100">10 – 15 Mins</span>
                 </div>
               </div>
@@ -134,10 +177,9 @@ export default function RehydrationGuidePage() {
             <div className="space-y-6 md:pl-12 md:border-l border-gray-100 h-full">
               <h4 className="text-2xl font-black text-gray-900 flex items-center gap-3">
                  <span className="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm">2</span>
-                 How to Use
+                 Step-by-Step Guide
               </h4>
               
-              {/* Language Selector */}
               <div className="flex overflow-x-auto gap-2 pb-2 scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
                 {howToUseData.map((lang, idx) => (
                   <button
@@ -175,6 +217,16 @@ export default function RehydrationGuidePage() {
                 </motion.div>
               </AnimatePresence>
             </div>
+          </motion.div>
+
+          <motion.div 
+             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+             className="mt-16 text-center space-y-6"
+          >
+             <h3 className="text-2xl font-black text-gray-900">Ready to Try Maharani?</h3>
+             <a href={siteConfig.amazon1kgUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 transition-all group">
+                Buy on Amazon <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+             </a>
           </motion.div>
         </div>
       </section>

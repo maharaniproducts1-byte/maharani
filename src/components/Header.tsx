@@ -13,14 +13,14 @@ export function Header() {
 
   // Close mobile menu when route changes
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    // setIsMobileMenuOpen(false); // Handled by Link click or Next.js route change unmount
   }, [pathname]);
 
   const navItems = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Rehydration Guide", href: "/rehydration-guide" },
-    { name: "Retail Pack", href: "/retail-pack" },
+    { name: "About Us", href: "/about" },
+    { name: "Products", href: "/products" },
+    { name: "How to Use", href: "/how-to-use" },
     { name: "Recipes", href: "/recipes" },
   ];
 
