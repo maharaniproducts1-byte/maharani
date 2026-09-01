@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { ScrollVideoHero } from "@/components/ScrollVideoHero";
 import { motion, Variants } from "framer-motion";
 import { 
   Sparkles, 
@@ -63,6 +64,9 @@ export default function MaharaniLandingPage() {
   // --- Preloader State ---
   return (
     <div className="bg-[#FFFDF9] text-slate-800 selection:bg-red-600 selection:text-white">
+      
+      {/* Scroll Video Hero (Pinned) */}
+      <ScrollVideoHero totalFrames={240} />
 
       {/* Hero Section */}
       <section id="home" className="relative pt-32 pb-24 overflow-hidden">

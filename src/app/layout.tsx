@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 import { Header } from "@/components/Header";
+import { SmoothScrolling } from "@/components/SmoothScrolling";
 
 export default function RootLayout({
   children,
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#FFFDF9] text-slate-800 antialiased flex flex-col">
         <Header />
         <main className="flex-grow">
-          {children}
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
         </main>
       </body>
     </html>
