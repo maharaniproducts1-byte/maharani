@@ -238,7 +238,7 @@ export default function MaharaniLandingPage() {
             <motion.h3 variants={fadeUp} className="text-xl font-bold text-gray-400 uppercase tracking-widest">
               Those We Serve
             </motion.h3>
-            <motion.div variants={fadeUp} className="pt-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 flex justify-center">
+            <motion.div variants={fadeUp} className="pt-4 flex justify-center">
                <Image src="/those-we-serve-new.png" alt="Our Clients" width={800} height={150} className="w-full max-w-4xl h-auto object-contain mix-blend-multiply" />
             </motion.div>
           </motion.div>
