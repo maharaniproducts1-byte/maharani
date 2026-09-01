@@ -32,6 +32,35 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const FloatingWhatsApp = () => {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const toggleVisibility = () => {
+      // Appear after the hero section (approx 600px scroll)
+      if (window.scrollY > 600) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  return (
+    <div className={`fixed bottom-6 right-6 z-[100] transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}>
+      <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-2xl hover:scale-110 transition-all group">
+        <WhatsAppIcon className="w-8 h-8" />
+        <span className="absolute right-16 bg-white text-gray-900 text-xs font-bold px-3 py-2 rounded-lg shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          Chat with us
+        </span>
+      </a>
+    </div>
+  );
+};
+
+
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
@@ -145,6 +174,8 @@ export default function MaharaniLandingPage() {
           </motion.div>
         </div>
       </section>
+
+      <FloatingWhatsApp />
 
 
 
