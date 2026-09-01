@@ -258,7 +258,7 @@ export default function MaharaniLandingPage() {
                 </div>
                 <div>
                   <h4 className="font-black text-gray-900 text-lg">Call Us</h4>
-                  <p className="text-sm text-gray-600 mt-1 font-medium">+91 9544 330 066</p>
+                  <a href={`tel:${siteConfig.phone.replace(/\s+/g, '')}`} className="text-sm text-gray-600 mt-1 font-medium hover:text-red-600 transition-colors block">{siteConfig.phone}</a>
                 </div>
               </div>
 
@@ -268,7 +268,7 @@ export default function MaharaniLandingPage() {
                 </div>
                 <div>
                   <h4 className="font-black text-gray-900 text-lg">Email</h4>
-                  <p className="text-sm text-gray-600 mt-1 font-medium">info@maharaniproducts.in</p>
+                  <a href={`mailto:${siteConfig.email}`} className="text-sm text-gray-600 mt-1 font-medium hover:text-red-600 transition-colors block">{siteConfig.email}</a>
                 </div>
               </div>
             </motion.div>
@@ -341,7 +341,7 @@ export default function MaharaniLandingPage() {
           <div>
             <h5 className="font-black text-gray-900 mb-6">Connect With Us</h5>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-green-50 hover:text-green-600 hover:border-green-200 transition-all">
+              <a href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-green-50 hover:text-green-600 hover:border-green-200 transition-all">
                 <WhatsAppIcon className="w-5 h-5" />
               </a>
             </div>
