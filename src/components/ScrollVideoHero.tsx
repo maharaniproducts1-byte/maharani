@@ -78,7 +78,7 @@ export const ScrollVideoHero = ({ totalFrames = 240 }: { totalFrames?: number })
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "+=350%", // Scroll distance (350vh for smooth scrolling)
+        end: "+=300%", // Scroll distance for the animation
         scrub: 1.5,
         pin: true,
       },
@@ -93,29 +93,26 @@ export const ScrollVideoHero = ({ totalFrames = 240 }: { totalFrames?: number })
 
     return () => {
       trigger.kill();
-      // ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, [totalFrames]);
 
   return (
-    <section ref={containerRef} id="scroll-video-track" className="relative w-full h-[400vh] bg-black">
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden z-10 bg-black">
-        {!loaded && (
-          <div className="absolute inset-0 z-50 flex items-center justify-center bg-black text-white/50 backdrop-blur-sm">
-            <span className="font-bold tracking-widest uppercase text-sm">Loading Experience {loadingProgress}%</span>
-          </div>
-        )}
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full object-cover will-change-transform"
-          style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
-        />
-        {/* Optional scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-50">
-          <span className="text-white text-[10px] uppercase tracking-[0.3em]">Scroll Down</span>
-          <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
-            <div className="w-full h-1/2 bg-white animate-bounce" />
-          </div>
+    <section ref={containerRef} id="scroll-video-track" className="relative w-full h-screen bg-black overflow-hidden">
+      {!loaded && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black text-white/50 backdrop-blur-sm">
+          <span className="font-bold tracking-widest uppercase text-sm">Loading Experience {loadingProgress}%</span>
+        </div>
+      )}
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full object-cover will-change-transform"
+        style={{ transform: "translateZ(0)", backfaceVisibility: "hidden" }}
+      />
+      {/* Optional scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-3 opacity-50">
+        <span className="text-white text-[10px] uppercase tracking-[0.3em]">Scroll Down</span>
+        <div className="w-[1px] h-12 bg-white/20 relative overflow-hidden">
+          <div className="w-full h-1/2 bg-white animate-bounce" />
         </div>
       </div>
     </section>
