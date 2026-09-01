@@ -3,6 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 // Register ScrollTrigger outside of the component to ensure it's registered once
 if (typeof window !== "undefined") {
@@ -49,22 +51,31 @@ export const ScrollVideoHero = ({ totalFrames = 240 }: { totalFrames?: number })
       );
     };
 
-    // Load first frame immediately to display placeholder
-    const firstImage = new Image();
+    // Preload logic
+    let firstImageLoaded = false;
+    const firstImage = new window.Image();
     firstImage.src = currentFrame(0);
     firstImage.onload = () => {
       drawImageScaled(firstImage, context);
-      setLoaded(true);
+      firstImageLoaded = true;
+      if (loadedCount === totalFrames) {
+        setLoaded(true);
+      }
     };
 
     // Preload all frames
     for (let i = 0; i < totalFrames; i++) {
-      const img = new Image();
+      const img = new window.Image();
       img.src = currentFrame(i);
       images.push(img);
       img.onload = () => {
         loadedCount++;
-        setLoadingProgress(Math.floor((loadedCount / totalFrames) * 100));
+        const prog = Math.floor((loadedCount / totalFrames) * 100);
+        setLoadingProgress(prog);
+        if (prog === 100 && firstImageLoaded) {
+          // Add a small delay for smoother UX once it hits 100%
+          setTimeout(() => setLoaded(true), 400);
+        }
       };
     }
 
@@ -98,11 +109,44 @@ export const ScrollVideoHero = ({ totalFrames = 240 }: { totalFrames?: number })
 
   return (
     <section ref={containerRef} id="scroll-video-track" className="relative w-full h-screen bg-black overflow-hidden">
-      {!loaded && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black text-white/50 backdrop-blur-sm">
-          <span className="font-bold tracking-widest uppercase text-sm">Loading Experience {loadingProgress}%</span>
-        </div>
-      )}
+      <AnimatePresence>
+        {!loaded && (
+          <motion.div 
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#FFFDF9]"
+          >
+            <motion.div
+              animate={{ scale: [1, 1.05, 1], opacity: [0.8, 1, 0.8] }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+              className="flex flex-col items-center"
+            >
+              <Image 
+                src="/logo-shield-v2.png" 
+                alt="Maharani Logo" 
+                width={150} 
+                height={200} 
+                className="w-32 md:w-48 h-auto drop-shadow-md"
+                priority
+              />
+            </motion.div>
+            
+            <div className="mt-12 w-64 h-1.5 bg-red-100 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-red-600 rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: `${loadingProgress}%` }}
+                transition={{ ease: "linear", duration: 0.2 }}
+              />
+            </div>
+            
+            <div className="mt-4 font-bold text-red-800/60 tracking-widest text-[10px] uppercase">
+              Loading Experience {loadingProgress}%
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <canvas
         ref={canvasRef}
         className="w-full h-full object-cover will-change-transform"
