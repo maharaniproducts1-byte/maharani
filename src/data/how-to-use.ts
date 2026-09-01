@@ -17,7 +17,7 @@ export const howToUseData = [
       },
       {
         title: "Use",
-        description: "Use directly in Thoran, Avial, Chutneys & Gravies.",
+        description: "MIX → EXTRACT → USE",
       },
     ],
   },
@@ -39,7 +39,7 @@ export const howToUseData = [
       },
       {
         title: "उपयोग",
-        description: "थोरन, अवियल, चटनी और ग्रेवी में सीधे उपयोग करें।",
+        description: "MIX → EXTRACT → USE",
       },
     ],
   },
@@ -61,7 +61,7 @@ export const howToUseData = [
       },
       {
         title: "ഉപയോഗിക്കുക",
-        description: "തോരൻ, അവിയൽ, ചമ്മന്തി, ഗ്രേവികൾ എന്നിവയിൽ നേരിട്ട് ഉപയോഗിക്കാം.",
+        description: "MIX → EXTRACT → USE",
       },
     ],
   },
@@ -83,7 +83,7 @@ export const howToUseData = [
       },
       {
         title: "பயன்படுத்தவும்",
-        description: "தோரன், அவியல், சட்னி மற்றும் குழம்புகளில் நேரடியாக பயன்படுத்தவும்.",
+        description: "MIX → EXTRACT → USE",
       },
     ],
   },
@@ -105,7 +105,29 @@ export const howToUseData = [
       },
       {
         title: "ఉపయోగించండి",
-        description: "తోరన్, అవియల్, పచ్చళ్లు మరియు కూరలలో నేరుగా వాడండి.",
+        description: "MIX → EXTRACT → USE",
+      },
+    ],
+  },
+  {
+    languageCode: "kn",
+    languageName: "ಕನ್ನಡ",
+    steps: [
+      {
+        title: "ಅಳೆಯಿರಿ",
+        description: "ಒಂದು ಶುದ್ಧವಾದ ಪಾತ್ರೆಯಲ್ಲಿ ಅಗತ್ಯವಿರುವಷ್ಟು ಮಹಾರಾಣಿ ತೆಂಗಿನಕಾಯಿ ಪುಡಿಯನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ.",
+      },
+      {
+        title: "ನೀರು ಸೇರಿಸಿ",
+        description: "ಅನುಪಾತ ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಪ್ರಕಾರ ಬೆಚ್ಚಗಿನ ನೀರನ್ನು ಚಿಮುಕಿಸಿ ಮತ್ತು ನಿಧಾನವಾಗಿ ಬೆರೆಸಿ.",
+      },
+      {
+        title: "ವಿಶ್ರಾಂತಿ",
+        description: "ನೈಸರ್ಗಿಕ ಮೃದುತ್ವವನ್ನು ಮರಳಿ ಪಡೆಯಲು 10-15 ನಿಮಿಷಗಳ ಕಾಲ ಬಿಡಿ.",
+      },
+      {
+        title: "ಬಳಸಿ",
+        description: "MIX → EXTRACT → USE",
       },
     ],
   },

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { CheckCircle2, ChevronRight, ShoppingBag, Droplets, Leaf, Activity } from "lucide-react";
@@ -42,7 +42,7 @@ const products = [
     badge: "Commercial Pack",
     badgeColor: "bg-gray-100 text-gray-600 border border-gray-200",
     description: "High-capacity packaging perfectly suited for catering, commercial kitchens, and large family occasions with consistent export quality.",
-    images: ["/1kg-front.jpeg", "/1kg-back.jpeg"],
+    images: ["/1kg-front.jpeg", "/1kg-back-new.jpeg"],
     features: [
       "High yield efficiency",
       "Consistent aroma & texture",
@@ -63,6 +63,8 @@ const composition = [
 ];
 
 export default function ProductsPage() {
+  const [activeProductId, setActiveProductId] = useState("250g-pouch");
+
   return (
     <div className="bg-[#FDFBF7] min-h-screen pt-12">
       {/* Product Catalog */}
@@ -85,15 +87,19 @@ export default function ProductsPage() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-24">
-            {products.map((product, idx) => (
+            {products.map((product, idx) => {
+              const isActive = product.id === activeProductId;
+              
+              return (
               <motion.div 
                  key={product.id}
+                 onClick={() => setActiveProductId(product.id)}
                  initial={{ opacity: 0, y: 30 }} 
                  whileInView={{ opacity: 1, y: 0 }} 
                  viewport={{ once: true }} 
                  transition={{ delay: idx * 0.2 }}
-                 className={`group rounded-[2.5rem] p-10 bg-white transition-all duration-500 relative flex flex-col h-full ${
-                   product.isPrimary 
+                 className={`group rounded-[2.5rem] p-10 bg-white transition-all duration-500 relative flex flex-col h-full cursor-pointer ${
+                   isActive 
                      ? "border-2 border-red-600 shadow-xl hover:shadow-2xl hover:shadow-red-900/10" 
                      : "border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-xl"
                  }`}
@@ -127,7 +133,7 @@ export default function ProductsPage() {
                     <ul className="text-sm text-gray-700 space-y-4 font-semibold inline-block text-left">
                       {product.features.map((feature, i) => (
                         <li key={i} className="flex items-center gap-3">
-                          <CheckCircle2 className={`w-5 h-5 ${product.isPrimary ? "text-red-600" : "text-gray-400"}`} /> 
+                          <CheckCircle2 className={`w-5 h-5 ${isActive ? "text-red-600" : "text-gray-400"}`} /> 
                           {feature}
                         </li>
                       ))}
@@ -140,17 +146,21 @@ export default function ProductsPage() {
                   target={product.actionLink.startsWith("http") ? "_blank" : "_self"}
                   rel={product.actionLink.startsWith("http") ? "noopener noreferrer" : ""}
                   className={`w-full px-6 py-4 rounded-xl font-bold text-center transition-colors flex items-center justify-center gap-2 mt-auto ${
-                    product.isPrimary
+                    isActive
                       ? "bg-red-50 hover:bg-red-600 text-red-700 hover:text-white border border-red-100"
                       : product.actionLink.startsWith("http") 
                         ? "bg-[#FF9900] hover:bg-[#FF9900]/90 text-gray-900 border border-[#FF9900] shadow-md"
                         : "bg-white hover:bg-gray-50 text-gray-700 border border-gray-200"
                   }`}
+                  onClick={(e) => {
+                    if (!isActive) e.preventDefault(); // Don't navigate if clicking the inactive card's button, just activate the card
+                  }}
                 >
                   {product.actionText} <ChevronRight className="w-5 h-5" />
                 </a>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

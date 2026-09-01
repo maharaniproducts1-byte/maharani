@@ -138,7 +138,7 @@ export default function MaharaniLandingPage() {
                 </div>
                 
                 <p className="text-xs text-red-100 leading-relaxed max-w-xs mx-auto opacity-90">
-                  Specially packaged for Tier-1 retail markets with instant QR rehydration guide.
+                  Preserving the authentic essence of Kerala coconut. Flawlessly crafted for culinary excellence, with zero compromises.
                 </p>
               </div>
             </div>
@@ -147,38 +147,7 @@ export default function MaharaniLandingPage() {
       </section>
 
 
-      {/* Clients Section */}
-      <section className="py-16 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-6">
-            <motion.h3 variants={fadeUp} className="text-xl font-bold text-gray-400 uppercase tracking-widest">
-              Those We Serve
-            </motion.h3>
-            <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-8 md:gap-16 pt-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xl font-black text-gray-900 tracking-tighter">SYMEGA</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">India</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xl font-black text-red-600 tracking-tighter">Tasty Foods</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">U.A.E</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xl font-black text-gray-900 tracking-tighter">Shakthi Group</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">U.S.A</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xl font-black text-gray-800 tracking-tighter">GCR GROUP</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">U.A.E</span>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-xl font-black text-gray-900 tracking-tighter">ORKLA</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">India & U.A.E</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Certifications Section */}
       <section className="py-16 bg-[#FFFDF9]">
@@ -242,6 +211,20 @@ export default function MaharaniLandingPage() {
         </div>
       </section>
 
+      {/* Clients Section */}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-6">
+            <motion.h3 variants={fadeUp} className="text-xl font-bold text-gray-400 uppercase tracking-widest">
+              Those We Serve
+            </motion.h3>
+            <motion.div variants={fadeUp} className="pt-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500 flex justify-center">
+               <Image src="/those-we-serve-new.png" alt="Our Clients" width={800} height={150} className="w-full max-w-4xl h-auto object-contain mix-blend-multiply" />
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-[#FFFDF9]">
         <div className="max-w-7xl mx-auto px-6">
@@ -298,17 +281,17 @@ export default function MaharaniLandingPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900" />
+                    <input type="text" placeholder="John Doe" className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900 font-sans" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
-                    <input type="email" placeholder="john@company.com" className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900" />
+                    <input type="email" placeholder="john@company.com" className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900 font-sans" />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Inquiry Type</label>
-                  <select className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900 appearance-none cursor-pointer">
+                  <select className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900 appearance-none cursor-pointer font-sans">
                     <option>Retail Partnership</option>
                     <option>Bulk / Catering Order</option>
                     <option>Export Inquiry</option>
@@ -318,7 +301,7 @@ export default function MaharaniLandingPage() {
 
                 <div className="space-y-2">
                   <label className="text-xs font-bold text-gray-500 uppercase tracking-widest ml-1">Message</label>
-                  <textarea rows={4} placeholder="How can we help you?" className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900 resize-none"></textarea>
+                  <textarea rows={4} placeholder="How can we help you?" className="w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:ring-4 focus:ring-red-500/10 rounded-xl px-5 py-4 outline-none transition-all font-medium text-gray-900 resize-none font-sans"></textarea>
                 </div>
 
                 <button type="button" className="w-full bg-gray-900 hover:bg-black text-white px-8 py-5 rounded-xl font-black text-sm uppercase tracking-widest shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all flex justify-center items-center gap-2 group">

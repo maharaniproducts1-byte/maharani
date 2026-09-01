@@ -50,10 +50,10 @@ export default function AboutPage() {
                 <span className="text-red-600">Kerala Coconut</span>
               </motion.h1>
               <motion.p variants={fadeUp} className="text-base text-gray-700 mt-6 font-medium leading-relaxed">
-                Maharani is a premium brand dedicated to preserving and delivering the authentic taste of pure Kerala coconuts. Made from the flesh of matured coconuts that are grated, dried, and ground into a fine powder untouched by human hands.
+                Established in 1981, Maharani Agro Products stands as a defining legacy of authentic Kerala coconut excellence. With roots firmly planted in the rich traditions and heritage of Maharani Wadbiar, our journey is built on decades of uncompromising commitment to purity and culinary perfection.
               </motion.p>
               <motion.p variants={fadeUp} className="text-base text-gray-700 mt-4 font-medium leading-relaxed">
-                We procure coconuts from the Kuttiyadi belt which is considered to be the best in the world. Coconut offers about 68% minimum fat content which makes our brand the most premium in the country. This process retains the natural oils and nutrients of the coconut, making it a rich and flavourful ingredient.
+                We exclusively procure coconuts from the prestigious Kuttiyadi belt, renowned globally for yielding the finest coconuts. Our meticulous process ensures a minimum of 68% natural fat content is retained, preserving the authentic oils, aroma, and flavor that have made our products a trusted staple for nearly fifty years.
               </motion.p>
             </div>
           </motion.div>
@@ -137,26 +137,26 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
           <motion.div 
             initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
-            className="bg-gray-800/50 p-10 rounded-[2rem] border border-gray-700 hover:bg-gray-800 transition-colors"
+            className="bg-gray-800/50 p-10 rounded-[2rem] border border-gray-700 hover:bg-gray-800 transition-colors h-full flex flex-col"
           >
             <h3 className="text-2xl font-black mb-4 flex items-center gap-3">
               <span className="w-10 h-10 rounded-full bg-red-600/20 text-red-500 flex items-center justify-center text-sm">V</span>
               Our Vision
             </h3>
-            <p className="text-gray-300 font-medium leading-relaxed text-sm">
+            <p className="text-gray-300 font-medium leading-relaxed text-sm flex-grow">
               To make Maharani the defining symbol of authentic Kerala coconut excellence, celebrated by families and culinary professionals across India and globally for quality, purity, and tradition.
             </p>
           </motion.div>
           
           <motion.div 
             initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-gray-800/50 p-10 rounded-[2rem] border border-gray-700 hover:bg-gray-800 transition-colors"
+            className="bg-gray-800/50 p-10 rounded-[2rem] border border-gray-700 hover:bg-gray-800 transition-colors h-full flex flex-col"
           >
             <h3 className="text-2xl font-black mb-4 flex items-center gap-3">
               <span className="w-10 h-10 rounded-full bg-red-600/20 text-red-500 flex items-center justify-center text-sm">M</span>
               Our Mission
             </h3>
-            <p className="text-gray-300 font-medium leading-relaxed text-sm">
+            <p className="text-gray-300 font-medium leading-relaxed text-sm flex-grow">
               To transform Kerala's finest coconuts into premium food products that seamlessly combine traditional authenticity with modern culinary convenience, creating lasting value through uncompromising quality.
             </p>
           </motion.div>

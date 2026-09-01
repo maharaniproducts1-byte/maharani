@@ -1,0 +1,582 @@
+[
+  {
+    "slug": "traditional-thoran",
+    "title": "Traditional Thoran",
+    "category": "Traditional Kerala",
+    "description": "Rehydrate and stir-fry directly with vegetables and spices for an authentic side dish. Enhances flavor and adds traditional texture to cooking.",
+    "image": "/recipes/thoran-placeholder.png",
+    "prepTime": "15 mins",
+    "cookTime": "10 mins",
+    "servings": "4",
+    "difficulty": "Easy",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder",
+      "1/2 cup warm water (for rehydration)",
+      "2 cups chopped vegetables (Cabbage, Beans, or Carrot)",
+      "1 tsp mustard seeds",
+      "1/2 tsp cumin seeds",
+      "2-3 green chilies, slit",
+      "1 sprig curry leaves",
+      "1/4 tsp turmeric powder",
+      "1 tbsp coconut oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 1 cup of Maharani Coconut Powder by mixing it gently with 1/2 cup warm water. Let it rest for 10-15 minutes.",
+      "02 — Tempering: Heat coconut oil in a pan over medium heat. Add mustard seeds and let them splutter, then add cumin seeds, slit green chilies, and curry leaves. Sauté until fragrant.",
+      "03 — Cook vegetables: Add the finely chopped vegetables, turmeric powder, and salt. Mix well. Cover the pan and cook on low heat until the vegetables are tender. Avoid adding extra water to retain crunchiness.",
+      "04 — Combine: Add the rehydrated coconut to the cooked vegetables. Mix thoroughly and cook for another 2 minutes to blend the flavors.",
+      "05 — Finish and serve: Remove from heat and serve hot."
+    ],
+    "tips": [
+      "For extra flavor, slightly crush the cumin seeds and green chilies together before adding them to the pan."
+    ],
+    "servingSuggestion": "Best served with hot Kerala Matta rice and Parippu (Dal) curry."
+  },
+  {
+    "slug": "kerala-avial",
+    "title": "Kerala Avial",
+    "category": "Curries & Savoury",
+    "description": "A staple mixed vegetable dish where rehydrated coconut forms the creamy base. Enhances flavor and adds authentic richness to cooking.",
+    "image": "/recipes/avial-placeholder.png",
+    "prepTime": "20 mins",
+    "cookTime": "20 mins",
+    "servings": "5",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1.5 cups Maharani Coconut Powder",
+      "3/4 cup warm water (for rehydration)",
+      "3 cups mixed vegetables (Yam, Plantain, Carrot, Beans, Drumstick, Ash Gourd)",
+      "1 tsp cumin seeds",
+      "4-5 green chilies",
+      "1/2 tsp turmeric powder",
+      "1/2 cup thick sour curd (yogurt)",
+      "2 tbsp coconut oil",
+      "1 sprig curry leaves",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Prepare vegetables: Cut all the vegetables into uniform long batons (about 2 inches long). Cook them in a heavy-bottomed pan with turmeric powder, salt, and a splash of water until just tender (do not overcook).",
+      "02 — Prepare the coconut: While the vegetables cook, rehydrate 1.5 cups of Maharani Coconut Powder with 3/4 cup warm water and let it rest for 10 minutes.",
+      "03 — Make the paste: Grind the rehydrated coconut, green chilies, and cumin seeds into a coarse paste. Do not add excess water while grinding.",
+      "04 — Combine and cook: Add the ground coconut paste to the cooked vegetables. Mix very gently to ensure the vegetables don't break. Cook on low heat for 3-4 minutes until the raw smell of the paste disappears.",
+      "05 — Finish and serve: Remove the pan from heat and let it cool slightly. Gently fold in the beaten curd. Drizzle raw coconut oil over the dish and garnish with fresh curry leaves before serving."
+    ],
+    "tips": [
+      "Never boil the Avial after adding the curd, as it will cause the curd to curdle and spoil the texture."
+    ],
+    "servingSuggestion": "A must-have traditional side dish for the Kerala Sadya."
+  },
+  {
+    "slug": "coconut-stew",
+    "title": "Kerala Coconut Stew",
+    "category": "Curries & Savoury",
+    "description": "Extract rich coconut milk from the powder for delicious, aromatic stews. Enhances flavor and adds perfect creaminess to curries.",
+    "image": "/recipes/stew-placeholder.png",
+    "prepTime": "20 mins",
+    "cookTime": "25 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder",
+      "1.5 cups warm water (for thick milk)",
+      "1 cup warm water (for thin milk)",
+      "2 cups mixed vegetables (Potato, Carrot, Green Peas, Beans)",
+      "1 large onion, thinly sliced",
+      "2-3 green chilies, slit",
+      "1 inch ginger, julienned",
+      "Whole spices (1 inch cinnamon, 3 cloves, 2 cardamom pods)",
+      "1 sprig curry leaves",
+      "2 tbsp coconut oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Extract milk: Blend 1 cup of Maharani Coconut Powder with 1.5 cups of warm water. Strain and squeeze to extract the 'thick coconut milk'. Set aside. Blend the remaining squeezed coconut residue with 1 cup of warm water and strain to extract the 'thin coconut milk'.",
+      "02 — Tempering: Heat coconut oil in a pan and add the whole spices (cinnamon, cloves, cardamom). Add the sliced onion, green chilies, ginger, and curry leaves. Sauté until the onions turn translucent (do not let them brown).",
+      "03 — Cook vegetables: Add the mixed vegetables and sauté for a minute. Pour in the thin coconut milk and add salt. Cover and cook until the vegetables are perfectly tender.",
+      "04 — Combine: Lower the heat entirely and gently stir in the thick coconut milk. Heat for 2 minutes on low flame to warm it through. Do not let it boil, as the thick milk may split.",
+      "05 — Finish and serve: Remove from heat and serve warm."
+    ],
+    "tips": [
+      "Add a handful of soaked and ground cashew nuts along with the thick milk for an even richer and creamier stew."
+    ],
+    "servingSuggestion": "Pairs perfectly with Appam, Idiyappam, or toasted bread."
+  },
+  {
+    "slug": "payasam",
+    "title": "Authentic Payasam",
+    "category": "Sweets & Desserts",
+    "description": "Use extracted coconut milk for making rich, traditional sweet delicacies. Also great as a topping or filler when sprinkled on desserts.",
+    "image": "/recipes/payasam-placeholder.png",
+    "prepTime": "10 mins",
+    "cookTime": "30 mins",
+    "servings": "6",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1.5 cups Maharani Coconut Powder",
+      "2.5 cups warm water (for milk extraction)",
+      "1 cup roasted Vermicelli (Semiya) or Rice Ada",
+      "1.5 cups Jaggery (grated) or Sugar",
+      "1/2 tsp cardamom powder",
+      "10-15 cashew nuts",
+      "10-15 raisins",
+      "2 tbsp ghee"
+    ],
+    "steps": [
+      "01 — Extract milk: Extract thin and thick coconut milk from the Maharani Coconut Powder using the warm water (blend, strain, and repeat as done for stews).",
+      "02 — Prepare Jaggery: If using Jaggery, melt it in a separate pan with 1/4 cup water and strain it to remove impurities.",
+      "03 — Cook Vermicelli: In a thick-bottomed pan, cook the vermicelli or ada in the thin coconut milk on medium heat until soft.",
+      "04 — Combine and thicken: Add the strained jaggery syrup (or sugar) and cook until the mixture slightly thickens.",
+      "05 — Add thick milk: Reduce the heat to the lowest setting and pour in the thick coconut milk and cardamom powder. Stir well and warm it, but do not let it boil. Remove from heat.",
+      "06 — Garnish: In a separate small pan, heat ghee and fry the cashew nuts and raisins until the nuts are golden and raisins puff up. Pour the fried nuts, raisins, and ghee over the payasam and stir gently."
+    ],
+    "tips": [
+      "You can add a pinch of dry ginger powder (chukku) along with the cardamom for a deeply traditional flavor profile."
+    ],
+    "servingSuggestion": "Serve warm or chilled as a dessert after a grand meal."
+  },
+  {
+    "slug": "kerala-cabbage-thoran",
+    "title": "Kerala Cabbage Thoran",
+    "category": "Traditional Kerala",
+    "description": "A quick, everyday Kerala side dish. The rehydrated desiccated coconut brings the necessary moisture and sweetness to balance the cabbage.",
+    "image": "/recipes/kerala-cabbage-thoran-placeholder.jpg",
+    "prepTime": "10 mins",
+    "cookTime": "10 mins",
+    "servings": "4",
+    "difficulty": "Easy",
+    "ingredients": [
+      "3/4 cup Maharani Coconut Powder",
+      "1/3 cup warm water (for rehydration)",
+      "3 cups finely chopped cabbage",
+      "1/2 tsp mustard seeds",
+      "1/2 tsp cumin seeds",
+      "1/4 tsp turmeric powder",
+      "2 green chilies, slit",
+      "1 sprig curry leaves",
+      "1 tbsp coconut oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 3/4 cup of Maharani Coconut Powder with 1/3 cup warm water. Set aside for 10 minutes.",
+      "02 — Tempering: Heat coconut oil in a pan. Splutter mustard seeds, then add cumin seeds, green chilies, and curry leaves.",
+      "03 — Cook cabbage: Add the finely chopped cabbage, turmeric, and salt. Stir well, cover, and cook on low heat for 5 minutes until tender. Do not overcook.",
+      "04 — Combine: Stir in the rehydrated coconut. Cook uncovered for 2 minutes to mix flavors.",
+      "05 — Finish and serve: Remove from heat and serve hot."
+    ],
+    "servingSuggestion": "Excellent with rice and moru curry."
+  },
+  {
+    "slug": "kerala-pumpkin-erissery",
+    "title": "Kerala Pumpkin Erissery",
+    "category": "Traditional Kerala",
+    "description": "A classic Kerala dish combining sweet pumpkin with a roasted coconut paste. The desiccated coconut roasts beautifully to release a deep, nutty aroma.",
+    "image": "/recipes/kerala-pumpkin-erissery-placeholder.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "25 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1.5 cups Maharani Coconut Powder (divided)",
+      "3/4 cup warm water (for rehydration)",
+      "3 cups yellow pumpkin, cubed",
+      "1/2 cup cowpeas (vanpayar), soaked and cooked",
+      "1/2 tsp turmeric powder",
+      "1 tsp red chili powder",
+      "1/2 tsp cumin seeds",
+      "2 dry red chilies",
+      "1 sprig curry leaves",
+      "2 tbsp coconut oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 1 cup of Maharani Coconut Powder with 1/2 cup warm water for the paste. Keep the remaining 1/2 cup of dry powder for roasting later.",
+      "02 — Cook pumpkin: Boil the pumpkin cubes with turmeric, chili powder, and salt until soft. Mash lightly. Mix in the cooked cowpeas.",
+      "03 — Make the paste: Grind the rehydrated coconut and cumin seeds into a smooth paste. Add this paste to the pumpkin mixture. Simmer for 3-4 minutes.",
+      "04 — Roast coconut (The secret step): Heat coconut oil in a small pan. Fry mustard seeds, dry red chilies, and curry leaves. Add the remaining 1/2 cup of dry Maharani Coconut Powder. Roast on low heat until dark golden brown.",
+      "05 — Finish and serve: Pour the roasted coconut mixture over the erissery. Stir well and serve."
+    ]
+  },
+  {
+    "slug": "kerala-vegetable-theeyal",
+    "title": "Kerala Vegetable Theeyal",
+    "category": "Traditional Kerala",
+    "description": "A rich, dark gravy made by roasting desiccated coconut with spices. The uniform texture of Maharani Coconut Powder ensures an even roast without burning.",
+    "image": "/recipes/kerala-vegetable-theeyal-placeholder.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "30 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder",
+      "2 cups mixed vegetables (drumstick, pearl onions, bitter gourd)",
+      "1 small lemon-sized ball of tamarind, soaked in 1 cup water",
+      "1 tbsp coriander powder",
+      "1 tsp red chili powder",
+      "1/4 tsp turmeric powder",
+      "1/4 tsp fenugreek powder",
+      "2 tbsp coconut oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Roast the coconut: Heat a pan on low flame. Dry roast 1 cup of Maharani Coconut Powder (do not rehydrate) until it turns dark brown. Stir continuously.",
+      "02 — Add spices: Turn off the heat. Immediately add coriander, chili, turmeric, and fenugreek powders to the hot coconut. Mix well and let cool.",
+      "03 — Make the paste: Grind the roasted coconut-spice mixture with a little water into a smooth, dark paste.",
+      "04 — Cook vegetables: In a pot, cook the mixed vegetables with the extracted tamarind water and salt until tender.",
+      "05 — Combine: Stir the roasted coconut paste into the cooked vegetables. Simmer for 10 minutes until oil separates at the top.",
+      "06 — Finish and serve: Serve hot with steamed rice."
+    ]
+  },
+  {
+    "slug": "coconut-based-vegetable-curry",
+    "title": "Coconut-Based Vegetable Curry",
+    "category": "Curries & Savoury",
+    "description": "An everyday curry relying on rehydrated coconut paste for a thick, satisfying gravy.",
+    "image": "/recipes/coconut-based-vegetable-curry-placeholder.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "20 mins",
+    "servings": "4",
+    "difficulty": "Easy",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder",
+      "1/2 cup warm water (for rehydration)",
+      "2 cups mixed vegetables (carrots, potatoes, cauliflower)",
+      "1 onion, chopped",
+      "1 tomato, chopped",
+      "1/2 tsp ginger-garlic paste",
+      "1 tsp garam masala",
+      "1/2 tsp turmeric powder",
+      "1 tbsp oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 1 cup of Maharani Coconut Powder with 1/2 cup warm water. After 10 mins, grind it into a smooth paste.",
+      "02 — Saute aromatics: Heat oil in a pan. Sauté chopped onions until golden. Add ginger-garlic paste and tomatoes. Cook until soft.",
+      "03 — Cook vegetables: Add the mixed vegetables, turmeric, salt, and 1 cup of water. Cover and cook until vegetables are done.",
+      "04 — Combine: Stir in the coconut paste and garam masala. Simmer for 5 minutes until the gravy thickens.",
+      "05 — Finish and serve: Garnish with coriander leaves and serve hot with chapati or rice."
+    ]
+  },
+  {
+    "slug": "kerala-style-coconut-chutney",
+    "title": "Kerala-Style Coconut Chutney",
+    "category": "Curries & Savoury",
+    "description": "The classic accompaniment for dosa and idli. Rehydrating the desiccated coconut perfectly mimics the texture and flavor of fresh coconut.",
+    "image": "/recipes/kerala-style-coconut-chutney-placeholder.jpg",
+    "prepTime": "10 mins",
+    "cookTime": "5 mins",
+    "servings": "4",
+    "difficulty": "Easy",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder",
+      "1/2 cup warm water (for rehydration)",
+      "2-3 green chilies",
+      "1 small piece of ginger",
+      "2 tbsp roasted gram (pottukadalai) (optional, for thickness)",
+      "1/2 tsp mustard seeds",
+      "2 dry red chilies",
+      "1 sprig curry leaves",
+      "1 tbsp coconut oil",
+      "Salt to taste"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 1 cup of Maharani Coconut Powder with 1/2 cup warm water. Let it rest for 10 minutes.",
+      "02 — Blend chutney: In a blender, combine the rehydrated coconut, green chilies, ginger, roasted gram, salt, and a little extra water if needed. Blend to a smooth or slightly coarse paste.",
+      "03 — Tempering: Heat coconut oil in a small pan. Splutter mustard seeds, then add dry red chilies and curry leaves.",
+      "04 — Finish and serve: Pour the hot tempering over the chutney. Mix well and serve with idli, dosa, or vada."
+    ]
+  },
+  {
+    "slug": "coconut-appam",
+    "title": "Soft Coconut Appam",
+    "category": "Breakfast & Snacks",
+    "description": "Soft, lacy Kerala appams rely on rich coconut milk. Extracting milk from Maharani Coconut Powder provides the perfect consistency.",
+    "image": "/recipes/coconut-appam-placeholder.jpg",
+    "prepTime": "8 hours (includes fermentation)",
+    "cookTime": "20 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "2 cups raw rice (soaked for 4-6 hours)",
+      "1.5 cups Maharani Coconut Powder",
+      "2 cups warm water (for extracting milk)",
+      "1/2 tsp active dry yeast",
+      "2 tbsp sugar",
+      "1/2 tsp salt"
+    ],
+    "steps": [
+      "01 — Extract milk: Blend 1.5 cups of Maharani Coconut Powder with 2 cups of warm water. Strain to extract thick coconut milk.",
+      "02 — Prepare batter: Drain the soaked rice. Blend the rice with the extracted coconut milk until very smooth.",
+      "03 — Ferment: Dissolve yeast and sugar in 2 tbsp warm water. Add to the batter. Cover and leave in a warm place for 8 hours to ferment.",
+      "04 — Cook: Add salt to the fermented batter and stir gently. Pour a ladle of batter into a hot appachatti (appam pan) and swirl it around to form lacey edges. Cover and cook until the center is fluffy.",
+      "05 — Finish and serve: Serve hot with Kerala Coconut Stew."
+    ]
+  },
+  {
+    "slug": "coconut-puttu",
+    "title": "Kerala Coconut Puttu",
+    "category": "Breakfast & Snacks",
+    "description": "Steamed rice flour cylinders layered with coconut. Rehydrated desiccated coconut provides the exact texture needed between the rice layers.",
+    "image": "/recipes/coconut-puttu-placeholder.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "15 mins",
+    "servings": "3",
+    "difficulty": "Easy",
+    "ingredients": [
+      "2 cups puttu flour (roasted rice flour)",
+      "1 cup Maharani Coconut Powder",
+      "1/2 cup warm water (for rehydration)",
+      "Water (as needed for the flour)",
+      "1/2 tsp salt"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 1 cup of Maharani Coconut Powder with 1/2 cup warm water. Fluff it with a fork after 10 minutes.",
+      "02 — Prepare flour: Mix salt into the puttu flour. Gradually sprinkle water and mix with your fingers until the flour reaches a crumbly texture (it should hold its shape when pressed but crumble easily).",
+      "03 — Layer: In a puttu maker (kutty), add a small layer (about 2 tbsp) of the rehydrated coconut, followed by a handful of the moistened rice flour. Repeat until full, ending with a layer of coconut.",
+      "04 — Steam: Steam the puttu maker over boiling water for 5-7 minutes until steam escapes from the top.",
+      "05 — Finish and serve: Push the puttu out using a skewer and serve hot with kadala curry or ripe bananas."
+    ]
+  },
+  {
+    "slug": "coconut-idiyappam",
+    "title": "Coconut Idiyappam",
+    "category": "Breakfast & Snacks",
+    "description": "String hoppers steamed over a bed of coconut. The rehydrated coconut powder infuses flavor into the delicate rice strings.",
+    "image": "/recipes/coconut-idiyappam-placeholder.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "15 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "2 cups roasted rice flour",
+      "1 cup Maharani Coconut Powder",
+      "1/2 cup warm water (for rehydration)",
+      "2.5 cups boiling water",
+      "1 tbsp coconut oil",
+      "1/2 tsp salt"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate 1 cup of Maharani Coconut Powder with 1/2 cup warm water. Set aside.",
+      "02 — Prepare dough: Boil water with salt and coconut oil. Gradually pour into the rice flour and mix with a spoon. Once cool enough to handle, knead into a smooth dough.",
+      "03 — Press strings: Lightly grease an idli plate or idiyappam steamer. Sprinkle a layer of rehydrated coconut on each plate.",
+      "04 — Steam: Fill the idiyappam press with dough and squeeze it over the coconut layer in a circular motion. Steam for 8-10 minutes.",
+      "05 — Finish and serve: Serve warm with sweetened coconut milk or vegetable stew."
+    ]
+  },
+  {
+    "slug": "coconut-unniyappam",
+    "title": "Sweet Unniyappam",
+    "category": "Breakfast & Snacks",
+    "description": "Traditional sweet fritters. Desiccated coconut provides a delightful bite and crunch inside the soft appams.",
+    "image": "/recipes/coconut-unniyappam-placeholder.jpg",
+    "prepTime": "30 mins",
+    "cookTime": "20 mins",
+    "servings": "6",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1 cup roasted rice flour",
+      "1/2 cup Maharani Coconut Powder (used dry)",
+      "1 cup jaggery, melted and strained",
+      "2 ripe small bananas (palayankodan), mashed",
+      "1/2 tsp cardamom powder",
+      "A pinch of baking soda",
+      "Coconut oil or ghee for deep frying"
+    ],
+    "steps": [
+      "01 — Prepare batter: In a bowl, mix rice flour, mashed bananas, strained jaggery syrup, cardamom powder, and baking soda. The batter should have the consistency of thick pancake batter.",
+      "02 — Add coconut: Fold in the dry Maharani Coconut Powder. Let the batter rest for 30 minutes.",
+      "03 — Heat pan: Heat an unniyappam pan (appe pan) on medium heat. Pour coconut oil or ghee into the cavities.",
+      "04 — Fry: Pour the batter into each cavity (fill to 3/4th). Cook until the bottom is golden brown, then flip and cook the other side.",
+      "05 — Finish and serve: Remove and drain on paper towels. Serve warm."
+    ]
+  },
+  {
+    "slug": "coconut-ada",
+    "title": "Ela Ada (Steamed Rice Parcels)",
+    "category": "Breakfast & Snacks",
+    "description": "Sweet coconut and jaggery filling inside rice parcels. Rehydrated desiccated coconut absorbs the jaggery perfectly for a rich filling.",
+    "image": "/recipes/coconut-ada-placeholder.jpg",
+    "prepTime": "20 mins",
+    "cookTime": "20 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1 cup roasted rice flour",
+      "1.5 cups Maharani Coconut Powder",
+      "3/4 cup warm water (for rehydration)",
+      "1 cup jaggery, grated",
+      "1/2 tsp cardamom powder",
+      "Boiling water and salt for dough",
+      "Banana leaves for wrapping"
+    ],
+    "steps": [
+      "01 — Prepare the filling: Rehydrate the Maharani Coconut Powder with warm water. In a pan, melt jaggery with a splash of water, add the rehydrated coconut and cardamom. Cook until the mixture comes together and moisture evaporates. Let it cool.",
+      "02 — Prepare dough: Mix boiling water and salt into the rice flour to form a smooth, soft dough.",
+      "03 — Shape: Wilt banana leaf squares over a flame to make them pliable. Flatten a lemon-sized ball of dough thinly on the leaf.",
+      "04 — Fill and fold: Place 2 tablespoons of the coconut-jaggery filling on one half of the flattened dough. Fold the banana leaf in half to seal the ada.",
+      "05 — Steam: Steam the wrapped adas for 15-20 minutes. Serve warm."
+    ]
+  },
+  {
+    "slug": "coconut-kozhukatta",
+    "title": "Sweet Kozhukatta",
+    "category": "Breakfast & Snacks",
+    "description": "Steamed rice dumplings with a sweet coconut filling. The fine texture of Maharani Coconut Powder makes the filling dense and flavorful.",
+    "image": "/recipes/coconut-kozhukatta-placeholder.jpg",
+    "prepTime": "20 mins",
+    "cookTime": "15 mins",
+    "servings": "4",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1 cup roasted rice flour",
+      "1 cup Maharani Coconut Powder",
+      "1/2 cup warm water (for rehydration)",
+      "3/4 cup grated jaggery",
+      "1/2 tsp cardamom powder",
+      "Boiling water and salt for dough"
+    ],
+    "steps": [
+      "01 — Prepare the filling: Rehydrate the Maharani Coconut Powder. Melt jaggery in a pan, add the rehydrated coconut and cardamom. Cook until thick. Roll into small marble-sized balls once cool.",
+      "02 — Prepare dough: Make a soft dough by mixing boiling water and salt into the rice flour.",
+      "03 — Shape: Take a small portion of the dough, flatten it into a cup shape in your palm, place the sweet coconut ball inside, and seal completely, rolling it into a smooth round dumpling.",
+      "04 — Steam: Place the dumplings in a steamer and steam for 12-15 minutes.",
+      "05 — Finish and serve: Serve warm as an evening snack."
+    ]
+  },
+  {
+    "slug": "coconut-ladoo",
+    "title": "Instant Coconut Ladoo",
+    "category": "Sweets & Desserts",
+    "description": "A quick, 3-ingredient sweet. Dry desiccated coconut powder is perfect for this, rolling easily and providing excellent texture.",
+    "image": "/recipes/coconut-ladoo-placeholder.jpg",
+    "prepTime": "5 mins",
+    "cookTime": "10 mins",
+    "servings": "10 ladoos",
+    "difficulty": "Easy",
+    "ingredients": [
+      "2 cups Maharani Coconut Powder (plus 1/4 cup for rolling)",
+      "1 cup sweetened condensed milk",
+      "1/2 tsp cardamom powder",
+      "1 tsp ghee"
+    ],
+    "steps": [
+      "01 — Roast coconut: Heat ghee in a pan on low flame. Add 2 cups of dry Maharani Coconut Powder. Roast gently for 2 minutes until aromatic (do not brown).",
+      "02 — Add condensed milk: Pour in the sweetened condensed milk and cardamom powder. Stir continuously on low heat.",
+      "03 — Cook: Cook until the mixture thickens and starts leaving the sides of the pan (about 5 minutes). Remove from heat.",
+      "04 — Shape: Once the mixture is warm enough to handle, grease your palms and roll it into round ladoos.",
+      "05 — Finish and serve: Roll each ladoo in the reserved dry coconut powder to coat the outside. Store in an airtight container."
+    ]
+  },
+  {
+    "slug": "coconut-burfi",
+    "title": "Classic Coconut Burfi",
+    "category": "Sweets & Desserts",
+    "description": "A traditional square fudge. The consistency of Maharani Coconut Powder ensures a smooth cut and uniform texture.",
+    "image": "/recipes/coconut-burfi-placeholder.jpg",
+    "prepTime": "10 mins",
+    "cookTime": "20 mins",
+    "servings": "12 pieces",
+    "difficulty": "Medium",
+    "ingredients": [
+      "2 cups Maharani Coconut Powder",
+      "1 cup warm water (for rehydration)",
+      "1.5 cups sugar",
+      "1/2 cup milk",
+      "1/2 tsp cardamom powder",
+      "2 tbsp ghee"
+    ],
+    "steps": [
+      "01 — Prepare the coconut: Rehydrate the Maharani Coconut Powder with 1 cup warm water. Let it rest for 10 minutes.",
+      "02 — Cook: In a heavy-bottomed pan, combine the rehydrated coconut, sugar, and milk. Cook on medium heat, stirring continuously.",
+      "03 — Thicken: As the mixture cooks, it will first become runny, then begin to thicken. Add ghee and cardamom powder.",
+      "04 — Test for readiness: Cook until the mixture forms a single mass and leaves the sides of the pan.",
+      "05 — Finish and serve: Pour the mixture onto a greased plate and flatten it evenly. Let it cool completely before cutting into square pieces."
+    ]
+  },
+  {
+    "slug": "coconut-cookies",
+    "title": "Crispy Coconut Cookies",
+    "category": "Baking",
+    "description": "Bakery-style cookies where dry desiccated coconut provides crunch and intense coconut flavor.",
+    "image": "/recipes/coconut-cookies.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "15 mins",
+    "servings": "15 cookies",
+    "difficulty": "Easy",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder (used dry)",
+      "1 cup all-purpose flour",
+      "1/2 cup unsalted butter, softened",
+      "1/2 cup granulated sugar",
+      "1/4 cup brown sugar",
+      "1 egg",
+      "1/2 tsp baking powder",
+      "1/4 tsp salt"
+    ],
+    "steps": [
+      "01 — Cream butter: In a bowl, beat the softened butter and both sugars until light and fluffy. Add the egg and beat until combined.",
+      "02 — Mix dry ingredients: In a separate bowl, whisk together the flour, dry Maharani Coconut Powder, baking powder, and salt.",
+      "03 — Combine: Gradually add the dry ingredients into the wet mixture and mix until a dough forms.",
+      "04 — Shape and bake: Roll the dough into 1-inch balls and place on a lined baking sheet. Flatten slightly. Bake at 180°C (350°F) for 12-15 minutes until edges are golden.",
+      "05 — Finish and serve: Let cool on a wire rack to crisp up before serving."
+    ]
+  },
+  {
+    "slug": "coconut-cake",
+    "title": "Moist Coconut Cake",
+    "category": "Baking",
+    "description": "A rich, moist sponge cake. Extracted thick coconut milk replaces regular milk for an intense coconut flavor, and dry powder adds texture.",
+    "image": "/recipes/coconut-cake.jpg",
+    "prepTime": "20 mins",
+    "cookTime": "35 mins",
+    "servings": "8",
+    "difficulty": "Medium",
+    "ingredients": [
+      "1/2 cup Maharani Coconut Powder (dry, for folding into batter)",
+      "1 cup Maharani Coconut Powder (for milk extraction)",
+      "1 cup warm water (for milk extraction)",
+      "1.5 cups all-purpose flour",
+      "1 cup granulated sugar",
+      "1/2 cup unsalted butter, softened",
+      "2 eggs",
+      "1.5 tsp baking powder",
+      "1/4 tsp salt"
+    ],
+    "steps": [
+      "01 — Extract milk: Blend 1 cup of Maharani Coconut Powder with 1 cup warm water and strain to extract thick coconut milk (you need 1/2 cup of milk for the recipe).",
+      "02 — Cream butter: Beat butter and sugar until pale and fluffy. Add eggs one at a time, beating well.",
+      "03 — Combine dry and wet: Whisk flour, baking powder, and salt. Add dry ingredients to the butter mixture in three additions, alternating with the extracted coconut milk.",
+      "04 — Fold in coconut: Gently fold in the 1/2 cup of dry Maharani Coconut Powder.",
+      "05 — Bake: Pour batter into a greased 8-inch cake pan. Bake at 175°C (350°F) for 30-35 minutes until a skewer comes out clean. Cool before slicing."
+    ]
+  },
+  {
+    "slug": "coconut-muffins",
+    "title": "Morning Coconut Muffins",
+    "category": "Baking",
+    "description": "Fluffy muffins perfect for breakfast. The coconut powder toasts lightly on top while keeping the inside moist.",
+    "image": "/recipes/coconut-muffins.jpg",
+    "prepTime": "15 mins",
+    "cookTime": "20 mins",
+    "servings": "12 muffins",
+    "difficulty": "Easy",
+    "ingredients": [
+      "1 cup Maharani Coconut Powder (dry)",
+      "2 cups all-purpose flour",
+      "1/2 cup sugar",
+      "1 tbsp baking powder",
+      "1/2 tsp salt",
+      "1 cup milk",
+      "1/3 cup vegetable oil",
+      "2 eggs",
+      "1 tsp vanilla extract"
+    ],
+    "steps": [
+      "01 — Dry mix: In a large bowl, whisk together the flour, sugar, baking powder, salt, and 3/4 cup of the dry Maharani Coconut Powder.",
+      "02 — Wet mix: In a separate bowl, whisk the milk, oil, eggs, and vanilla extract.",
+      "03 — Combine: Pour the wet ingredients into the dry ingredients and stir just until combined (do not overmix).",
+      "04 — Prep for baking: Divide the batter evenly into a lined 12-cup muffin tin. Sprinkle the remaining 1/4 cup of dry coconut powder over the tops of the muffins.",
+      "05 — Bake: Bake at 200°C (400°F) for 18-20 minutes until a toothpick inserted in the center comes out clean. Cool on a wire rack."
+    ]
+  }
+]

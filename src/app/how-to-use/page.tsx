@@ -43,6 +43,7 @@ export default function HowToUsePage() {
               Maharani Desiccated Coconut Powder is crafted to perfectly substitute freshly grated coconut. 
               By following our precise rehydration method, you will restore the natural texture, aroma, and rich oils required for traditional cooking.
             </motion.p>
+
           </motion.div>
         </div>
       </section>
@@ -224,8 +225,15 @@ export default function HowToUsePage() {
              className="mt-16 text-center space-y-6"
           >
              <h3 className="text-2xl font-black text-gray-900">Ready to Try Maharani?</h3>
-             <a href={siteConfig.amazon1kgUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 transition-all group">
-                Buy on Amazon <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+             <a href={siteConfig.amazon1kgUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-2xl font-bold text-sm shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 transition-all group">
+                <span className="sr-only">Buy on Amazon</span>
+                Buy on 
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" 
+                  alt="Amazon" 
+                  className="h-6 w-auto brightness-0 invert mt-1 group-hover:scale-105 transition-transform" 
+                />
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
              </a>
           </motion.div>
         </div>
