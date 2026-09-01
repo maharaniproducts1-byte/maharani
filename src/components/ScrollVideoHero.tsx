@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
 
 // Register ScrollTrigger outside of the component to ensure it's registered once
 if (typeof window !== "undefined") {
@@ -77,7 +76,6 @@ export const ScrollVideoHero = ({ totalFrames = 240 }: { totalFrames?: number })
       snap: "frame",
       ease: "none",
       scrollTrigger: {
-        target: containerRef.current,
         trigger: containerRef.current,
         start: "top top",
         end: "+=350%", // Scroll distance (350vh for smooth scrolling)
