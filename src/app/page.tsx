@@ -181,11 +181,11 @@ export default function MaharaniLandingPage() {
               <div className="w-32 h-32 relative flex items-center justify-center">
                 <Image src="/certificates/haccp-certified.jpeg" alt="HACCP Certified" fill className="object-contain" />
               </div>
-              <div className="w-48 h-32 relative flex items-center justify-center">
-                <Image src="/certificates/lms-certified.png" alt="LMS Certified" fill className="object-contain scale-110" />
+              <div className="w-32 h-32 relative flex items-center justify-center">
+                <Image src="/certificates/lms-final-uncropped.png" alt="LMS Certified" fill className="object-contain" />
               </div>
-              <div className="w-48 h-32 relative flex items-center justify-center">
-                <Image src="/certificates/eiaci-certified.png" alt="EIACI Certified" fill className="object-contain scale-125" />
+              <div className="w-32 h-32 relative flex items-center justify-center">
+                <Image src="/certificates/eiaci-certified.png" alt="EIACI Certified" fill className="object-contain scale-[1.5]" />
               </div>
             </motion.div>
           </motion.div>
