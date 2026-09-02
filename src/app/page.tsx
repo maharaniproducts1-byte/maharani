@@ -231,19 +231,7 @@ export default function MaharaniLandingPage() {
         </div>
       </section>
 
-      {/* Clients Section */}
-      <section className="py-16 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-6">
-            <motion.h3 variants={fadeUp} className="text-xl font-bold text-gray-400 uppercase tracking-widest">
-              Those We Serve
-            </motion.h3>
-            <motion.div variants={fadeUp} className="pt-4 flex justify-center">
-               <Image src="/those-we-serve-new.png" alt="Our Clients" width={800} height={150} className="w-full max-w-4xl h-auto object-contain mix-blend-multiply" />
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-[#FFFDF9]">
