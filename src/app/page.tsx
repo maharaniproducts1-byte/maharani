@@ -175,17 +175,17 @@ export default function MaharaniLandingPage() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-8">
             <motion.h2 variants={fadeUp} className="text-3xl font-black text-gray-900 tracking-tight">Our Certifications</motion.h2>
             <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-8 md:gap-12 pt-4">
-              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+              <div className="w-32 h-32 relative flex items-center justify-center">
                 <Image src="/certificates/gmp-certified.png" alt="GMP Certified" fill className="object-contain" />
               </div>
-              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+              <div className="w-32 h-32 relative flex items-center justify-center">
                 <Image src="/certificates/haccp-certified.jpeg" alt="HACCP Certified" fill className="object-contain" />
               </div>
-              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                <Image src="/certificates/lms-certified.png" alt="LMS Certified" fill className="object-contain" />
+              <div className="w-48 h-32 relative flex items-center justify-center">
+                <Image src="/certificates/lms-certified.png" alt="LMS Certified" fill className="object-contain scale-110" />
               </div>
-              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
-                <Image src="/certificates/eiaci-certified.png" alt="EIACI Certified" fill className="object-contain" />
+              <div className="w-48 h-32 relative flex items-center justify-center">
+                <Image src="/certificates/eiaci-certified.png" alt="EIACI Certified" fill className="object-contain scale-125" />
               </div>
             </motion.div>
           </motion.div>
