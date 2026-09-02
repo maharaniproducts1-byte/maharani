@@ -232,6 +232,45 @@ export default function MaharaniLandingPage() {
       </section>
 
 
+      {/* Clients Section */}
+      <section className="py-16 bg-white border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-12">
+            <motion.h3 variants={fadeUp} className="text-3xl font-black text-gray-900 tracking-tight">
+              Those We Serve
+            </motion.h3>
+            <motion.div variants={fadeUp} className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center pt-4">
+              <div className="flex flex-col items-center gap-4 group">
+                <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
+                  <Image src="/clients/gcr-group.png" alt="GCR GROUP OF RESTAURANTS" fill className="object-contain p-4" />
+                </div>
+                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">GCR GROUP OF RESTAURANTS</span>
+              </div>
+              
+              <div className="flex flex-col items-center gap-4 group">
+                <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
+                  <Image src="/clients/orkla.jpeg" alt="ORKLA (EASTERN CONDIMENTS)" fill className="object-contain p-4" />
+                </div>
+                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">ORKLA (EASTERN CONDIMENTS)</span>
+              </div>
+
+              <div className="flex flex-col items-center gap-4 group">
+                <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
+                  <Image src="/clients/shakti-group.png" alt="SHAKTI GROUP" fill className="object-contain p-4" />
+                </div>
+                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">SHAKTI GROUP</span>
+              </div>
+
+              <div className="flex flex-col items-center gap-4 group">
+                <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
+                  <Image src="/clients/symega.png" alt="SYMEGA INGREDIENTS" fill className="object-contain p-4" />
+                </div>
+                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">SYMEGA INGREDIENTS</span>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-[#FFFDF9]">
