@@ -244,28 +244,40 @@ export default function MaharaniLandingPage() {
                 <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
                   <Image src="/clients/gcr-group.png" alt="GCR GROUP OF RESTAURANTS" fill className="object-contain p-4" />
                 </div>
-                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">GCR GROUP OF RESTAURANTS</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">GCR GROUP OF RESTAURANTS</span>
+                  <span className="text-xs font-semibold text-gray-500 text-center uppercase tracking-wider mt-1">U.A.E</span>
+                </div>
               </div>
               
               <div className="flex flex-col items-center gap-4 group">
                 <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
                   <Image src="/clients/orkla.jpeg" alt="ORKLA (EASTERN CONDIMENTS)" fill className="object-contain p-4" />
                 </div>
-                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">ORKLA (EASTERN CONDIMENTS)</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">ORKLA (EASTERN CONDIMENTS)</span>
+                  <span className="text-xs font-semibold text-gray-500 text-center uppercase tracking-wider mt-1">INDIA, UAE</span>
+                </div>
               </div>
 
               <div className="flex flex-col items-center gap-4 group">
                 <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
                   <Image src="/clients/shakti-group.png" alt="SHAKTI GROUP" fill className="object-contain p-4" />
                 </div>
-                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">SHAKTI GROUP</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">SHAKTI GROUP</span>
+                  <span className="text-xs font-semibold text-gray-500 text-center uppercase tracking-wider mt-1">U.S.A</span>
+                </div>
               </div>
 
               <div className="flex flex-col items-center gap-4 group">
                 <div className="w-32 h-32 relative bg-white rounded-full shadow-sm border border-gray-100 overflow-hidden flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
                   <Image src="/clients/symega.png" alt="SYMEGA INGREDIENTS" fill className="object-contain p-4" />
                 </div>
-                <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">SYMEGA INGREDIENTS</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-sm font-bold text-gray-700 text-center uppercase tracking-wide">SYMEGA INGREDIENTS</span>
+                  <span className="text-xs font-semibold text-gray-500 text-center uppercase tracking-wider mt-1">INDIA</span>
+                </div>
               </div>
             </motion.div>
           </motion.div>
