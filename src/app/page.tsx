@@ -174,20 +174,18 @@ export default function MaharaniLandingPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer} className="space-y-8">
             <motion.h2 variants={fadeUp} className="text-3xl font-black text-gray-900 tracking-tight">Our Certifications</motion.h2>
-            <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-12 pt-4">
-              <div className="w-24 h-24 rounded-full border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm">
-                <span className="font-black text-red-700 text-lg">GMP</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">Certified</span>
+            <motion.div variants={fadeUp} className="flex flex-wrap justify-center items-center gap-8 md:gap-12 pt-4">
+              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                <Image src="/certificates/gmp-certified.png" alt="GMP Certified" fill className="object-contain" />
               </div>
-              <div className="w-24 h-24 rounded-full border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm">
-                <span className="font-black text-green-600 text-lg">HACCP</span>
-                <span className="text-[10px] font-bold text-gray-500 uppercase">Certified</span>
+              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                <Image src="/certificates/haccp-certified.jpeg" alt="HACCP Certified" fill className="object-contain" />
               </div>
-              <div className="w-24 h-16 border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm rounded-lg">
-                <span className="font-black text-blue-800 text-2xl tracking-tighter">LMS</span>
+              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                <Image src="/certificates/lms-certified.png" alt="LMS Certified" fill className="object-contain" />
               </div>
-              <div className="w-24 h-16 border border-gray-200 bg-white flex flex-col items-center justify-center shadow-sm rounded-lg">
-                <span className="font-black text-gray-700 text-xl tracking-widest">eiaci</span>
+              <div className="w-28 h-28 relative flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300">
+                <Image src="/certificates/eiaci-certified.png" alt="EIACI Certified" fill className="object-contain" />
               </div>
             </motion.div>
           </motion.div>
