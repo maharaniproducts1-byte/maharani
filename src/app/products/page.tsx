@@ -98,17 +98,17 @@ export default function ProductsPage() {
                  whileInView={{ opacity: 1, y: 0 }} 
                  viewport={{ once: true }} 
                  transition={{ delay: idx * 0.2 }}
-                 className={`group rounded-[2.5rem] p-10 bg-white transition-all duration-500 relative flex flex-col h-full cursor-pointer ${
+                 className={`group rounded-[2.5rem] p-6 sm:p-8 md:p-10 bg-white transition-all duration-500 relative flex flex-col h-full cursor-pointer ${
                    isActive 
                      ? "border-2 border-red-600 shadow-xl hover:shadow-2xl hover:shadow-red-900/10" 
                      : "border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-xl"
                  }`}
               >
-                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 text-xs font-black uppercase px-6 py-2 rounded-full ${product.badgeColor} shadow-sm`}>
+                <div className={`absolute -top-4 left-1/2 -translate-x-1/2 text-[10px] sm:text-xs font-black uppercase px-4 sm:px-6 py-1.5 sm:py-2 rounded-full ${product.badgeColor} shadow-sm text-center w-max max-w-[90%]`}>
                   {product.badge}
                 </div>
                 
-                <div className="flex gap-4 items-center justify-center mb-10 mt-6 h-64">
+                <div className="flex gap-2 sm:gap-4 items-center justify-center mb-6 sm:mb-8 md:mb-10 mt-4 md:mt-6 h-36 sm:h-48 md:h-64">
                   {product.images.map((img, i) => (
                     <Image 
                       key={i}
@@ -116,7 +116,7 @@ export default function ProductsPage() {
                       alt={`${product.name} View ${i + 1}`} 
                       width={160} 
                       height={200} 
-                      className={`drop-shadow-2xl object-contain h-56 w-auto mix-blend-multiply transition-transform duration-500 ${
+                      className={`drop-shadow-2xl object-contain h-32 sm:h-44 md:h-56 w-auto max-w-[48%] mix-blend-multiply transition-transform duration-500 ${
                         i === 0 ? "group-hover:-rotate-3 group-hover:scale-105" : "group-hover:rotate-3 group-hover:scale-105 delay-75"
                       }`} 
                     />
