@@ -1,7 +1,7 @@
 import cv2
 import os
 
-video_path = "/Users/shamalmohamedmk/MAHARANI/i_want_to_generate_a_premium_s-ezremove.mp4"
+video_path = "/Users/shamalmohamedmk/MAHARANI/TensorPix - i_want_to_generate_a_premium_s-ezremove.mp4"
 output_dir = "/Users/shamalmohamedmk/MAHARANI/public/hero-scroll-frames"
 
 if not os.path.exists(output_dir):

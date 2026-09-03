@@ -28,27 +28,21 @@ export const ScrollVideoHero = ({ totalFrames = 240 }: { totalFrames?: number })
     const context = canvas?.getContext("2d");
     if (!canvas || !context) return;
 
-    // Set canvas dimensions to match 1080p standard for high quality
-    canvas.width = 1920;
-    canvas.height = 1080;
+    // Dimensions will be set on the first frame draw
 
     const images: HTMLImageElement[] = [];
     let loadedCount = 0;
 
     const drawImageScaled = (img: HTMLImageElement, ctx: CanvasRenderingContext2D) => {
-      // Calculate object-fit: cover equivalent for canvas
-      const hRatio = canvas.width / img.width;
-      const vRatio = canvas.height / img.height;
-      const ratio = Math.max(hRatio, vRatio);
-      const centerShift_x = (canvas.width - img.width * ratio) / 2;
-      const centerShift_y = (canvas.height - img.height * ratio) / 2;
-      
+      // Optimize for responsive view (mobile, tablet, desktop)
+      // by setting canvas intrinsic dimensions to the image dimensions
+      // and letting CSS `object-cover` handle the perfect screen coverage.
+      if (canvas.width !== img.width || canvas.height !== img.height) {
+        canvas.width = img.width;
+        canvas.height = img.height;
+      }
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(
-        img,
-        0, 0, img.width, img.height,
-        centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
-      );
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     };
 
     // Preload logic
