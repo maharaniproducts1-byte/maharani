@@ -42,7 +42,7 @@ const products = [
     badge: "Commercial Pack",
     badgeColor: "bg-gray-100 text-gray-600 border border-gray-200",
     description: "High-capacity packaging perfectly suited for catering, commercial kitchens, and large family occasions with consistent export quality.",
-    images: ["/1kg-front.jpeg", "/1kg-back-new.jpeg"],
+    images: ["/1kg-front.jpeg", "/1kg-back-v3.png"],
     features: [
       "High yield efficiency",
       "Consistent aroma & texture",
