@@ -13,7 +13,7 @@ export function Header() {
 
   // Close mobile menu when route changes
   useEffect(() => {
-    // setIsMobileMenuOpen(false); // Handled by Link click or Next.js route change unmount
+    setIsMobileMenuOpen(false);
   }, [pathname]);
 
   const navItems = [
@@ -84,6 +84,7 @@ export function Header() {
                   <Link 
                     key={item.name} 
                     href={item.href} 
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className={`block py-2 text-lg font-black transition-colors ${isActive ? "text-red-600" : "text-gray-800 hover:text-red-600"}`}
                   >
                     {item.name}
