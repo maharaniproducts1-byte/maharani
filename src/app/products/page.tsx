@@ -176,11 +176,11 @@ export default function ProductsPage() {
               <p className="text-sm text-gray-500 mt-2 font-medium">Standardized specifications for Maharani Desiccated Coconut Powder.</p>
             </div>
             
-            <div className="bg-[#FDFBF7] rounded-[2rem] p-8 border border-gray-200 shadow-sm space-y-6">
+            <div className="bg-[#FDFBF7] rounded-[2rem] p-6 sm:p-8 border border-gray-200 shadow-sm space-y-6">
               {composition.map((item, idx) => (
-                <div key={idx} className="flex justify-between items-center border-b border-gray-200/60 pb-4 last:border-0 last:pb-0">
-                  <span className="font-bold text-gray-700">{item.label}</span>
-                  <span className="font-black text-gray-900 bg-white px-4 py-1.5 rounded-full border border-gray-100 shadow-sm">{item.value}</span>
+                <div key={idx} className="flex justify-between items-center gap-4 border-b border-gray-200/60 pb-4 last:border-0 last:pb-0">
+                  <span className="font-bold text-gray-700 text-sm sm:text-base leading-snug">{item.label}</span>
+                  <span className="font-black text-gray-900 bg-white px-3 sm:px-4 py-1.5 rounded-full border border-gray-100 shadow-sm shrink-0 whitespace-nowrap text-sm sm:text-base">{item.value}</span>
                 </div>
               ))}
             </div>
